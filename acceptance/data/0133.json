@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "name": "Two voices",
+  "render": {
+    "sample_rate": 48000,
+    "channels": 1
+  },
+  "graph": {
+    "n0": {
+      "module": "envelope_ahd",
+      "inputs": {
+        "attack_ms": 20,
+        "hold_ms": 60,
+        "decay_ms": 220,
+        "attack_curve": "linear",
+        "decay_curve": "linear"
+      }
+    },
+    "n1": {
+      "module": "note_frequency",
+      "inputs": {
+        "note": "G4"
+      }
+    },
+    "n2": {
+      "module": "oscillator",
+      "inputs": {
+        "waveform": "sine",
+        "frequency_hz": {
+          "ref": "n1.hz"
+        },
+        "phase_cycles": 0
+      }
+    },
+    "n3": {
+      "module": "amplifier",
+      "inputs": {
+        "audio": {
+          "ref": "n2.audio"
+        },
+        "envelope": {
+          "ref": "n0.control"
+        },
+        "gain": {
+          "ref": "inputs.body_level"
+        }
+      }
+    },
+    "n4": {
+      "module": "place",
+      "inputs": {
+        "audio": {
+          "ref": "n3.audio"
+        },
+        "start_ms": 0,
+        "duration_ms": {
+          "ref": "n0.duration_ms"
+        }
+      }
+    },
+    "n5": {
+      "module": "envelope_ahd",
+      "inputs": {
+        "attack_ms": 2,
+        "hold_ms": 0,
+        "decay_ms": 50,
+        "attack_curve": "linear",
+        "decay_curve": "linear"
+      }
+    },
+    "n6": {
+      "module": "transpose",
+      "inputs": {
+        "note": "G4",
+        "semitones": 12
+      }
+    },
+    "n7": {
+      "module": "note_frequency",
+      "inputs": {
+        "note": {
+          "ref": "n6.note"
+        }
+      }
+    },
+    "n8": {
+      "module": "oscillator",
+      "inputs": {
+        "waveform": "sine",
+        "frequency_hz": {
+          "ref": "n7.hz"
+        },
+        "phase_cycles": 0
+      }
+    },
+    "n9": {
+      "module": "amplifier",
+      "inputs": {
+        "audio": {
+          "ref": "n8.audio"
+        },
+        "envelope": {
+          "ref": "n5.control"
+        },
+        "gain": {
+          "ref": "inputs.accent_level"
+        }
+      }
+    },
+    "n10": {
+      "module": "place",
+      "inputs": {
+        "audio": {
+          "ref": "n9.audio"
+        },
+        "start_ms": {
+          "ref": "inputs.accent_delay"
+        },
+        "duration_ms": {
+          "ref": "n5.duration_ms"
+        }
+      }
+    },
+    "n11": {
+      "module": "mix",
+      "inputs": {
+        "audio_a": {
+          "ref": "n4.audio"
+        },
+        "audio_b": {
+          "ref": "n10.audio"
+        },
+        "duration_a_ms": {
+          "ref": "n4.end_ms"
+        },
+        "duration_b_ms": {
+          "ref": "n10.end_ms"
+        }
+      }
+    }
+  },
+  "output": {
+    "audio": {
+      "ref": "n11.audio"
+    },
+    "duration_ms": {
+      "ref": "n11.duration_ms"
+    }
+  },
+  "inputs": {
+    "body_level": {
+      "label": "Body level",
+      "type": "float",
+      "default": 0.1,
+      "range": [
+        0,
+        0.3
+      ],
+      "step": 0.01
+    },
+    "accent_level": {
+      "label": "Accent level",
+      "type": "float",
+      "default": 0.3,
+      "range": [
+        0,
+        0.3
+      ],
+      "step": 0.01
+    },
+    "accent_delay": {
+      "label": "Accent delay",
+      "type": "duration",
+      "default": 50,
+      "unit": "ms",
+      "range": [
+        0,
+        300
+      ],
+      "step": 10
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "name": "Envelope",
+  "render": {
+    "sample_rate": 48000,
+    "channels": 1
+  },
+  "graph": {
+    "n0": {
+      "module": "envelope_ahd",
+      "inputs": {
+        "attack_ms": {
+          "ref": "inputs.attack"
+        },
+        "hold_ms": {
+          "ref": "inputs.hold"
+        },
+        "decay_ms": {
+          "ref": "inputs.decay"
+        },
+        "attack_curve": {
+          "ref": "inputs.attack_curve"
+        },
+        "decay_curve": {
+          "ref": "inputs.decay_curve"
+        }
+      }
+    },
+    "n1": {
+      "module": "note_frequency",
+      "inputs": {
+        "note": "G4"
+      }
+    },
+    "n2": {
+      "module": "oscillator",
+      "inputs": {
+        "waveform": "sine",
+        "frequency_hz": {
+          "ref": "n1.hz"
+        },
+        "phase_cycles": 0
+      }
+    },
+    "n3": {
+      "module": "amplifier",
+      "inputs": {
+        "audio": {
+          "ref": "n2.audio"
+        },
+        "envelope": {
+          "ref": "n0.control"
+        },
+        "gain": 0.15
+      }
+    },
+    "n4": {
+      "module": "place",
+      "inputs": {
+        "audio": {
+          "ref": "n3.audio"
+        },
+        "start_ms": 0,
+        "duration_ms": {
+          "ref": "n0.duration_ms"
+        }
+      }
+    }
+  },
+  "output": {
+    "audio": {
+      "ref": "n4.audio"
+    },
+    "duration_ms": {
+      "ref": "n4.end_ms"
+    }
+  },
+  "inputs": {
+    "attack": {
+      "label": "Attack",
+      "type": "duration",
+      "default": 100,
+      "unit": "ms",
+      "range": [
+        0,
+        500
+      ],
+      "step": 10
+    },
+    "hold": {
+      "label": "Hold",
+      "type": "duration",
+      "default": 100,
+      "unit": "ms",
+      "range": [
+        0,
+        500
+      ],
+      "step": 10
+    },
+    "decay": {
+      "label": "Decay",
+      "type": "duration",
+      "default": 250,
+      "unit": "ms",
+      "range": [
+        20,
+        1000
+      ],
+      "step": 10
+    },
+    "attack_curve": {
+      "label": "Attack curve",
+      "type": "choice",
+      "default": "linear",
+      "choices": [
+        "linear",
+        "ease-in",
+        "ease-out"
+      ]
+    },
+    "decay_curve": {
+      "label": "Decay curve",
+      "type": "choice",
+      "default": "linear",
+      "choices": [
+        "linear",
+        "ease-in",
+        "ease-out"
+      ]
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "name": "Resonance",
+  "render": {
+    "sample_rate": 48000,
+    "channels": 1
+  },
+  "graph": {
+    "n0": {
+      "module": "envelope_ahd",
+      "inputs": {
+        "attack_ms": 10,
+        "hold_ms": 700,
+        "decay_ms": 150,
+        "attack_curve": "linear",
+        "decay_curve": "linear"
+      }
+    },
+    "n1": {
+      "module": "note_frequency",
+      "inputs": {
+        "note": "G3"
+      }
+    },
+    "n2": {
+      "module": "oscillator",
+      "inputs": {
+        "waveform": "saw",
+        "frequency_hz": {
+          "ref": "n1.hz"
+        },
+        "phase_cycles": 0
+      }
+    },
+    "n3": {
+      "module": "lowpass",
+      "inputs": {
+        "audio": {
+          "ref": "n2.audio"
+        },
+        "envelope": {
+          "ref": "n0.control"
+        },
+        "cutoff_hz": 1000,
+        "resonance": {
+          "ref": "inputs.resonance"
+        },
+        "amount": 0
+      }
+    },
+    "n4": {
+      "module": "amplifier",
+      "inputs": {
+        "audio": {
+          "ref": "n3.audio"
+        },
+        "envelope": {
+          "ref": "n0.control"
+        },
+        "gain": 0.08
+      }
+    },
+    "n5": {
+      "module": "place",
+      "inputs": {
+        "audio": {
+          "ref": "n4.audio"
+        },
+        "start_ms": 0,
+        "duration_ms": {
+          "ref": "n0.duration_ms"
+        }
+      }
+    }
+  },
+  "output": {
+    "audio": {
+      "ref": "n5.audio"
+    },
+    "duration_ms": {
+      "ref": "n5.end_ms"
+    }
+  },
+  "inputs": {
+    "resonance": {
+      "label": "Resonance",
+      "type": "float",
+      "default": 0.5,
+      "range": [
+        0.5,
+        10
+      ],
+      "step": 0.5
+    }
+  }
+}

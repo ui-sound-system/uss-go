@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "name": "Descending tone",
+  "group": "Notification",
+  "render": {
+    "sample_rate": 48000,
+    "channels": 1
+  },
+  "graph": {
+    "pitch": {
+      "module": "note_frequency",
+      "inputs": {
+        "note": {
+          "ref": "inputs.note"
+        }
+      }
+    },
+    "sweep": {
+      "module": "pitch_sweep",
+      "inputs": {
+        "frequency_hz": {
+          "ref": "pitch.hz"
+        },
+        "semitones": {
+          "ref": "inputs.drop"
+        },
+        "duration_ms": {
+          "ref": "inputs.sweep"
+        }
+      }
+    },
+    "tone": {
+      "module": "oscillator",
+      "inputs": {
+        "waveform": "sine",
+        "phase": {
+          "ref": "sweep.phase"
+        },
+        "phase_cycles": 0
+      }
+    },
+    "envelope": {
+      "module": "envelope_ad",
+      "inputs": {
+        "attack_ms": {
+          "ref": "inputs.attack"
+        },
+        "decay_ms": {
+          "ref": "inputs.decay"
+        },
+        "curve": "linear"
+      }
+    },
+    "amp": {
+      "module": "amplifier",
+      "inputs": {
+        "audio": {
+          "ref": "tone.audio"
+        },
+        "envelope": {
+          "ref": "envelope.control"
+        },
+        "gain": {
+          "ref": "inputs.level"
+        }
+      }
+    }
+  },
+  "output": {
+    "audio": {
+      "ref": "amp.audio"
+    },
+    "duration_ms": {
+      "ref": "envelope.duration_ms"
+    }
+  },
+  "inputs": {
+    "note": {
+      "label": "Note",
+      "type": "note",
+      "default": "C6",
+      "range": [
+        "C4",
+        "C7"
+      ]
+    },
+    "drop": {
+      "label": "Pitch drop",
+      "type": "float",
+      "unit": "st",
+      "default": -7,
+      "range": [
+        -12,
+        -2
+      ],
+      "step": 1
+    },
+    "sweep": {
+      "label": "Sweep time",
+      "type": "duration",
+      "unit": "ms",
+      "default": 60,
+      "range": [
+        20,
+        80
+      ],
+      "step": 5
+    },
+    "attack": {
+      "label": "Attack",
+      "type": "duration",
+      "unit": "ms",
+      "default": 4,
+      "range": [
+        1,
+        20
+      ],
+      "step": 1
+    },
+    "decay": {
+      "label": "Decay",
+      "type": "duration",
+      "unit": "ms",
+      "default": 180,
+      "range": [
+        120,
+        300
+      ],
+      "step": 5
+    },
+    "level": {
+      "label": "Level",
+      "type": "float",
+      "default": 0.2,
+      "range": [
+        0.1,
+        0.3
+      ],
+      "step": 0.01
+    }
+  }
+}

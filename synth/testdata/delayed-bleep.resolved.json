@@ -1,0 +1,189 @@
+{
+  "version": 1,
+  "name": "Delayed bleep",
+  "group": "Info",
+  "render": {
+    "sample_rate": 48000,
+    "channels": 1
+  },
+  "graph": {
+    "first_pitch": {
+      "module": "note_frequency",
+      "inputs": {
+        "note": "C4"
+      }
+    },
+    "first_tone": {
+      "module": "oscillator",
+      "inputs": {
+        "waveform": "square",
+        "frequency_hz": {
+          "ref": "first_pitch.hz"
+        },
+        "phase_cycles": 0
+      }
+    },
+    "first_envelope": {
+      "module": "envelope_ahd",
+      "inputs": {
+        "attack_ms": 30,
+        "hold_until_ms": 260,
+        "decay_ms": 40,
+        "attack_curve": "linear",
+        "decay_curve": "ease-out"
+      }
+    },
+    "lead_filter_envelope": {
+      "module": "envelope_ad",
+      "inputs": {
+        "attack_ms": 260,
+        "decay_ms": 40,
+        "curve": "linear"
+      }
+    },
+    "first_filter": {
+      "module": "lowpass",
+      "inputs": {
+        "audio": {
+          "ref": "first_tone.audio"
+        },
+        "envelope": {
+          "ref": "lead_filter_envelope.control"
+        },
+        "cutoff_hz": 350,
+        "resonance": 0.8,
+        "amount": 2
+      }
+    },
+    "first_amp": {
+      "module": "amplifier",
+      "inputs": {
+        "audio": {
+          "ref": "first_filter.audio"
+        },
+        "envelope": {
+          "ref": "first_envelope.control"
+        },
+        "gain": 0.06
+      }
+    },
+    "first_event": {
+      "module": "place",
+      "inputs": {
+        "audio": {
+          "ref": "first_amp.audio"
+        },
+        "start_ms": 0,
+        "duration_ms": {
+          "ref": "first_envelope.duration_ms"
+        }
+      }
+    },
+    "second_note": {
+      "module": "transpose",
+      "inputs": {
+        "note": "C4",
+        "semitones": 12
+      }
+    },
+    "second_pitch": {
+      "module": "note_frequency",
+      "inputs": {
+        "note": {
+          "ref": "second_note.note"
+        }
+      }
+    },
+    "second_tone": {
+      "module": "unison_oscillator",
+      "inputs": {
+        "waveform": "square",
+        "frequency_hz": {
+          "ref": "second_pitch.hz"
+        },
+        "phase_cycles": 0,
+        "voices": 2,
+        "spread_cents": 8
+      }
+    },
+    "second_envelope": {
+      "module": "envelope_ad",
+      "inputs": {
+        "attack_ms": 4,
+        "decay_ms": 200,
+        "curve": "linear"
+      }
+    },
+    "filter_envelope": {
+      "module": "envelope_ad",
+      "inputs": {
+        "attack_ms": 40,
+        "decay_ms": 200,
+        "curve": "linear"
+      }
+    },
+    "second_filter": {
+      "module": "lowpass",
+      "inputs": {
+        "audio": {
+          "ref": "second_tone.audio"
+        },
+        "envelope": {
+          "ref": "filter_envelope.control"
+        },
+        "cutoff_hz": 350,
+        "resonance": 0.8,
+        "amount": 2
+      }
+    },
+    "second_amp": {
+      "module": "amplifier",
+      "inputs": {
+        "audio": {
+          "ref": "second_filter.audio"
+        },
+        "envelope": {
+          "ref": "second_envelope.control"
+        },
+        "gain": 0.18
+      }
+    },
+    "second_event": {
+      "module": "place",
+      "inputs": {
+        "audio": {
+          "ref": "second_amp.audio"
+        },
+        "start_ms": 260,
+        "duration_ms": {
+          "ref": "second_envelope.duration_ms"
+        }
+      }
+    },
+    "mix": {
+      "module": "mix",
+      "inputs": {
+        "audio_a": {
+          "ref": "first_event.audio"
+        },
+        "audio_b": {
+          "ref": "second_event.audio"
+        },
+        "duration_a_ms": {
+          "ref": "first_event.end_ms"
+        },
+        "duration_b_ms": {
+          "ref": "second_event.end_ms"
+        }
+      }
+    }
+  },
+  "output": {
+    "audio": {
+      "ref": "mix.audio"
+    },
+    "duration_ms": {
+      "ref": "mix.duration_ms"
+    }
+  }
+}

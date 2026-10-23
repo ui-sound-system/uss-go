@@ -1,0 +1,466 @@
+{
+  "version": 1,
+  "name": "Segmented envelope",
+  "render": {
+    "sample_rate": 48000,
+    "channels": 1
+  },
+  "graph": {
+    "n0": {
+      "module": "envelope_ahd",
+      "inputs": {
+        "attack_ms": 10,
+        "hold_ms": 0,
+        "decay_ms": 200,
+        "attack_curve": {
+          "ref": "inputs.curvature"
+        },
+        "decay_curve": "linear"
+      }
+    },
+    "n1": {
+      "module": "note_frequency",
+      "inputs": {
+        "note": {
+          "ref": "inputs.note"
+        }
+      }
+    },
+    "n2": {
+      "module": "envelope_segment",
+      "inputs": {
+        "duration_ms": 5,
+        "level": 1,
+        "curve": "ease-out"
+      }
+    },
+    "n3": {
+      "module": "envelope_segment",
+      "inputs": {
+        "previous": {
+          "ref": "n2.shape"
+        },
+        "duration_ms": {
+          "ref": "inputs.body"
+        },
+        "level": 1,
+        "curve": "linear"
+      }
+    },
+    "n4": {
+      "module": "envelope_segment",
+      "inputs": {
+        "previous": {
+          "ref": "n3.shape"
+        },
+        "duration_ms": 20,
+        "level": {
+          "ref": "inputs.tail_level"
+        },
+        "curve": {
+          "ref": "inputs.curvature"
+        }
+      }
+    },
+    "n5": {
+      "module": "envelope_segment",
+      "inputs": {
+        "previous": {
+          "ref": "n4.shape"
+        },
+        "duration_ms": {
+          "ref": "inputs.tail_duration"
+        },
+        "level": 0,
+        "curve": {
+          "ref": "inputs.curvature"
+        }
+      }
+    },
+    "n6": {
+      "module": "envelope_segments",
+      "inputs": {
+        "segments": {
+          "ref": "n5.shape"
+        }
+      }
+    },
+    "n7": {
+      "module": "fm_oscillator",
+      "inputs": {
+        "frequency_hz": {
+          "ref": "n1.hz"
+        },
+        "ratio": 2,
+        "index": 3,
+        "envelope": {
+          "ref": "n6.control"
+        }
+      }
+    },
+    "n8": {
+      "module": "envelope_segment",
+      "inputs": {
+        "duration_ms": 5,
+        "level": 1,
+        "curve": "ease-out"
+      }
+    },
+    "n9": {
+      "module": "envelope_segment",
+      "inputs": {
+        "previous": {
+          "ref": "n8.shape"
+        },
+        "duration_ms": {
+          "ref": "inputs.body"
+        },
+        "level": 1,
+        "curve": "linear"
+      }
+    },
+    "n10": {
+      "module": "envelope_segment",
+      "inputs": {
+        "previous": {
+          "ref": "n9.shape"
+        },
+        "duration_ms": 20,
+        "level": {
+          "ref": "inputs.tail_level"
+        },
+        "curve": {
+          "ref": "inputs.curvature"
+        }
+      }
+    },
+    "n11": {
+      "module": "envelope_segment",
+      "inputs": {
+        "previous": {
+          "ref": "n10.shape"
+        },
+        "duration_ms": {
+          "ref": "inputs.tail_duration"
+        },
+        "level": 0,
+        "curve": {
+          "ref": "inputs.curvature"
+        }
+      }
+    },
+    "n12": {
+      "module": "envelope_segments",
+      "inputs": {
+        "segments": {
+          "ref": "n11.shape"
+        }
+      }
+    },
+    "n13": {
+      "module": "lowpass",
+      "inputs": {
+        "audio": {
+          "ref": "n7.audio"
+        },
+        "envelope": {
+          "ref": "n12.control"
+        },
+        "cutoff_hz": 1000,
+        "resonance": 0.707,
+        "amount": 2
+      }
+    },
+    "n14": {
+      "module": "amplifier",
+      "inputs": {
+        "audio": {
+          "ref": "n13.audio"
+        },
+        "envelope": {
+          "ref": "n0.control"
+        },
+        "gain": 0.15
+      }
+    },
+    "n15": {
+      "module": "place",
+      "inputs": {
+        "audio": {
+          "ref": "n14.audio"
+        },
+        "start_ms": 0,
+        "duration_ms": {
+          "ref": "n0.duration_ms"
+        }
+      }
+    },
+    "n16": {
+      "module": "envelope_ahd",
+      "inputs": {
+        "attack_ms": 10,
+        "hold_ms": 0,
+        "decay_ms": 200,
+        "attack_curve": {
+          "ref": "inputs.curvature"
+        },
+        "decay_curve": "linear"
+      }
+    },
+    "n17": {
+      "module": "note_frequency",
+      "inputs": {
+        "note": {
+          "ref": "inputs.note"
+        }
+      }
+    },
+    "n18": {
+      "module": "envelope_segment",
+      "inputs": {
+        "duration_ms": 5,
+        "level": 1,
+        "curve": "ease-out"
+      }
+    },
+    "n19": {
+      "module": "envelope_segment",
+      "inputs": {
+        "previous": {
+          "ref": "n18.shape"
+        },
+        "duration_ms": {
+          "ref": "inputs.body"
+        },
+        "level": 1,
+        "curve": "linear"
+      }
+    },
+    "n20": {
+      "module": "envelope_segment",
+      "inputs": {
+        "previous": {
+          "ref": "n19.shape"
+        },
+        "duration_ms": 20,
+        "level": {
+          "ref": "inputs.tail_level"
+        },
+        "curve": {
+          "ref": "inputs.curvature"
+        }
+      }
+    },
+    "n21": {
+      "module": "envelope_segment",
+      "inputs": {
+        "previous": {
+          "ref": "n20.shape"
+        },
+        "duration_ms": {
+          "ref": "inputs.tail_duration"
+        },
+        "level": 0,
+        "curve": {
+          "ref": "inputs.curvature"
+        }
+      }
+    },
+    "n22": {
+      "module": "envelope_segments",
+      "inputs": {
+        "segments": {
+          "ref": "n21.shape"
+        }
+      }
+    },
+    "n23": {
+      "module": "fm_oscillator",
+      "inputs": {
+        "frequency_hz": {
+          "ref": "n17.hz"
+        },
+        "ratio": 2,
+        "index": 3,
+        "envelope": {
+          "ref": "n22.control"
+        }
+      }
+    },
+    "n24": {
+      "module": "envelope_segment",
+      "inputs": {
+        "duration_ms": 5,
+        "level": 1,
+        "curve": "ease-out"
+      }
+    },
+    "n25": {
+      "module": "envelope_segment",
+      "inputs": {
+        "previous": {
+          "ref": "n24.shape"
+        },
+        "duration_ms": {
+          "ref": "inputs.body"
+        },
+        "level": 1,
+        "curve": "linear"
+      }
+    },
+    "n26": {
+      "module": "envelope_segment",
+      "inputs": {
+        "previous": {
+          "ref": "n25.shape"
+        },
+        "duration_ms": 20,
+        "level": {
+          "ref": "inputs.tail_level"
+        },
+        "curve": {
+          "ref": "inputs.curvature"
+        }
+      }
+    },
+    "n27": {
+      "module": "envelope_segment",
+      "inputs": {
+        "previous": {
+          "ref": "n26.shape"
+        },
+        "duration_ms": {
+          "ref": "inputs.tail_duration"
+        },
+        "level": 0,
+        "curve": {
+          "ref": "inputs.curvature"
+        }
+      }
+    },
+    "n28": {
+      "module": "envelope_segments",
+      "inputs": {
+        "segments": {
+          "ref": "n27.shape"
+        }
+      }
+    },
+    "n29": {
+      "module": "lowpass",
+      "inputs": {
+        "audio": {
+          "ref": "n23.audio"
+        },
+        "envelope": {
+          "ref": "n28.control"
+        },
+        "cutoff_hz": 1000,
+        "resonance": 0.707,
+        "amount": 2
+      }
+    },
+    "n30": {
+      "module": "amplifier",
+      "inputs": {
+        "audio": {
+          "ref": "n29.audio"
+        },
+        "envelope": {
+          "ref": "n16.control"
+        },
+        "gain": 0.15
+      }
+    },
+    "n31": {
+      "module": "place",
+      "inputs": {
+        "audio": {
+          "ref": "n30.audio"
+        },
+        "start_ms": 20.01,
+        "duration_ms": {
+          "ref": "n16.duration_ms"
+        }
+      }
+    },
+    "n32": {
+      "module": "mix",
+      "inputs": {
+        "audio_a": {
+          "ref": "n15.audio"
+        },
+        "audio_b": {
+          "ref": "n31.audio"
+        },
+        "duration_a_ms": {
+          "ref": "n15.end_ms"
+        },
+        "duration_b_ms": {
+          "ref": "n31.end_ms"
+        }
+      }
+    }
+  },
+  "output": {
+    "audio": {
+      "ref": "n32.audio"
+    },
+    "duration_ms": {
+      "ref": "n32.duration_ms"
+    }
+  },
+  "inputs": {
+    "note": {
+      "label": "Note",
+      "type": "note",
+      "default": "C5",
+      "range": [
+        "C4",
+        "C6"
+      ]
+    },
+    "body": {
+      "label": "Body",
+      "type": "duration",
+      "default": 20,
+      "unit": "ms",
+      "range": [
+        0,
+        100
+      ],
+      "step": 5
+    },
+    "tail_level": {
+      "label": "Tail level",
+      "type": "float",
+      "default": 0.2,
+      "range": [
+        0,
+        0.5
+      ],
+      "step": 0.05
+    },
+    "tail_duration": {
+      "label": "Tail duration",
+      "type": "duration",
+      "default": 120,
+      "unit": "ms",
+      "range": [
+        20,
+        500
+      ],
+      "step": 10
+    },
+    "curvature": {
+      "label": "Curvature",
+      "type": "choice",
+      "default": "ease-out",
+      "choices": [
+        "linear",
+        "ease-in",
+        "ease-out"
+      ]
+    }
+  }
+}

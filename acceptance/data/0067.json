@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "name": "One note",
+  "group": "Notification",
+  "render": {
+    "sample_rate": 48000,
+    "channels": 1
+  },
+  "graph": {
+    "pitch": {
+      "module": "note_frequency",
+      "inputs": {
+        "note": {
+          "ref": "inputs.note"
+        }
+      }
+    },
+    "tone": {
+      "module": "oscillator",
+      "inputs": {
+        "waveform": "sine",
+        "frequency_hz": {
+          "ref": "pitch.hz"
+        },
+        "phase_cycles": 0
+      }
+    },
+    "envelope": {
+      "module": "envelope_ad",
+      "inputs": {
+        "attack_ms": 5,
+        "decay_ms": {
+          "ref": "inputs.decay"
+        },
+        "curve": 1e-12
+      }
+    },
+    "amp": {
+      "module": "amplifier",
+      "inputs": {
+        "audio": {
+          "ref": "tone.audio"
+        },
+        "envelope": {
+          "ref": "envelope.control"
+        },
+        "gain": 0.2
+      }
+    }
+  },
+  "output": {
+    "audio": {
+      "ref": "amp.audio"
+    },
+    "duration_ms": {
+      "ref": "envelope.duration_ms"
+    }
+  },
+  "inputs": {
+    "note": {
+      "label": "Note",
+      "type": "note",
+      "default": "C5",
+      "range": [
+        "C4",
+        "C6"
+      ]
+    },
+    "decay": {
+      "label": "Decay",
+      "type": "duration",
+      "unit": "ms",
+      "default": 180,
+      "range": [
+        40,
+        240
+      ],
+      "step": 5
+    }
+  }
+}

@@ -1,0 +1,334 @@
+{
+  "version": 1,
+  "name": "Delayed bleep",
+  "render": {
+    "sample_rate": 48000,
+    "channels": 1
+  },
+  "graph": {
+    "n0": {
+      "module": "envelope_ahd",
+      "inputs": {
+        "attack_ms": {
+          "ref": "inputs.lead_attack"
+        },
+        "hold_until_ms": {
+          "ref": "inputs.delay"
+        },
+        "decay_ms": 40,
+        "attack_curve": "linear",
+        "decay_curve": "ease-out"
+      }
+    },
+    "n1": {
+      "module": "note_frequency",
+      "inputs": {
+        "note": {
+          "ref": "inputs.note"
+        }
+      }
+    },
+    "n2": {
+      "module": "oscillator",
+      "inputs": {
+        "waveform": {
+          "ref": "inputs.waveform"
+        },
+        "frequency_hz": {
+          "ref": "n1.hz"
+        },
+        "phase_cycles": 0
+      }
+    },
+    "n3": {
+      "module": "envelope_ahd",
+      "inputs": {
+        "attack_ms": {
+          "ref": "inputs.delay"
+        },
+        "hold_ms": 0,
+        "decay_ms": 40,
+        "attack_curve": "linear",
+        "decay_curve": "linear"
+      }
+    },
+    "n4": {
+      "module": "lowpass",
+      "inputs": {
+        "audio": {
+          "ref": "n2.audio"
+        },
+        "envelope": {
+          "ref": "n3.control"
+        },
+        "cutoff_hz": {
+          "ref": "inputs.cutoff"
+        },
+        "resonance": {
+          "ref": "inputs.resonance"
+        },
+        "amount": {
+          "ref": "inputs.brightness"
+        }
+      }
+    },
+    "n5": {
+      "module": "amplifier",
+      "inputs": {
+        "audio": {
+          "ref": "n4.audio"
+        },
+        "envelope": {
+          "ref": "n0.control"
+        },
+        "gain": 0.06
+      }
+    },
+    "n6": {
+      "module": "place",
+      "inputs": {
+        "audio": {
+          "ref": "n5.audio"
+        },
+        "start_ms": 0,
+        "duration_ms": {
+          "ref": "n0.duration_ms"
+        }
+      }
+    },
+    "n7": {
+      "module": "envelope_ahd",
+      "inputs": {
+        "attack_ms": 4,
+        "hold_ms": 0,
+        "decay_ms": 200,
+        "attack_curve": "linear",
+        "decay_curve": "linear"
+      }
+    },
+    "n8": {
+      "module": "transpose",
+      "inputs": {
+        "note": {
+          "ref": "inputs.note"
+        },
+        "semitones": 12
+      }
+    },
+    "n9": {
+      "module": "note_frequency",
+      "inputs": {
+        "note": {
+          "ref": "n8.note"
+        }
+      }
+    },
+    "n10": {
+      "module": "unison_oscillator",
+      "inputs": {
+        "waveform": {
+          "ref": "inputs.waveform"
+        },
+        "frequency_hz": {
+          "ref": "n9.hz"
+        },
+        "phase_cycles": 0,
+        "voices": {
+          "ref": "inputs.voices"
+        },
+        "spread_cents": {
+          "ref": "inputs.detune"
+        }
+      }
+    },
+    "n11": {
+      "module": "envelope_ahd",
+      "inputs": {
+        "attack_ms": 40,
+        "hold_ms": 0,
+        "decay_ms": 200,
+        "attack_curve": "linear",
+        "decay_curve": "linear"
+      }
+    },
+    "n12": {
+      "module": "lowpass",
+      "inputs": {
+        "audio": {
+          "ref": "n10.audio"
+        },
+        "envelope": {
+          "ref": "n11.control"
+        },
+        "cutoff_hz": {
+          "ref": "inputs.cutoff"
+        },
+        "resonance": {
+          "ref": "inputs.resonance"
+        },
+        "amount": {
+          "ref": "inputs.brightness"
+        }
+      }
+    },
+    "n13": {
+      "module": "amplifier",
+      "inputs": {
+        "audio": {
+          "ref": "n12.audio"
+        },
+        "envelope": {
+          "ref": "n7.control"
+        },
+        "gain": {
+          "ref": "inputs.level"
+        }
+      }
+    },
+    "n14": {
+      "module": "place",
+      "inputs": {
+        "audio": {
+          "ref": "n13.audio"
+        },
+        "start_ms": {
+          "ref": "inputs.delay"
+        },
+        "duration_ms": {
+          "ref": "n7.duration_ms"
+        }
+      }
+    },
+    "n15": {
+      "module": "mix",
+      "inputs": {
+        "audio_a": {
+          "ref": "n6.audio"
+        },
+        "audio_b": {
+          "ref": "n14.audio"
+        },
+        "duration_a_ms": {
+          "ref": "n6.end_ms"
+        },
+        "duration_b_ms": {
+          "ref": "n14.end_ms"
+        }
+      }
+    }
+  },
+  "output": {
+    "audio": {
+      "ref": "n15.audio"
+    },
+    "duration_ms": {
+      "ref": "n15.duration_ms"
+    }
+  },
+  "inputs": {
+    "note": {
+      "label": "Note",
+      "type": "note",
+      "default": "C4",
+      "range": [
+        "C3",
+        "C5"
+      ]
+    },
+    "waveform": {
+      "label": "Waveform",
+      "type": "choice",
+      "default": "square",
+      "choices": [
+        "sine",
+        "triangle",
+        "saw",
+        "square"
+      ]
+    },
+    "delay": {
+      "label": "Delay",
+      "type": "duration",
+      "default": 260,
+      "unit": "ms",
+      "range": [
+        100,
+        300
+      ],
+      "step": 10
+    },
+    "lead_attack": {
+      "label": "Lead attack",
+      "type": "duration",
+      "default": 30,
+      "unit": "ms",
+      "range": [
+        5,
+        80
+      ],
+      "step": 5
+    },
+    "voices": {
+      "label": "Bleep voices",
+      "type": "float",
+      "default": 2,
+      "range": [
+        1,
+        5
+      ],
+      "step": 1
+    },
+    "detune": {
+      "label": "Bleep detune",
+      "type": "float",
+      "default": 8,
+      "unit": "ct",
+      "range": [
+        0,
+        50
+      ],
+      "step": 1
+    },
+    "cutoff": {
+      "label": "Cutoff",
+      "type": "float",
+      "default": 350,
+      "unit": "Hz",
+      "range": [
+        100,
+        4000
+      ],
+      "step": 50
+    },
+    "resonance": {
+      "label": "Resonance",
+      "type": "float",
+      "default": 0.8,
+      "range": [
+        0.5,
+        2
+      ],
+      "step": 0.1
+    },
+    "brightness": {
+      "label": "Filter amount",
+      "type": "float",
+      "default": 2,
+      "range": [
+        0,
+        4
+      ],
+      "step": 0.25
+    },
+    "level": {
+      "label": "Bleep level",
+      "type": "float",
+      "default": 0.18,
+      "range": [
+        0.08,
+        0.3
+      ],
+      "step": 0.01
+    }
+  }
+}

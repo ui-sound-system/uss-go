@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "name": "Unison",
+  "render": {
+    "sample_rate": 48000,
+    "channels": 1
+  },
+  "graph": {
+    "n0": {
+      "module": "envelope_ahd",
+      "inputs": {
+        "attack_ms": 10,
+        "hold_ms": 700,
+        "decay_ms": 150,
+        "attack_curve": "linear",
+        "decay_curve": "linear"
+      }
+    },
+    "n1": {
+      "module": "note_frequency",
+      "inputs": {
+        "note": "G4"
+      }
+    },
+    "n2": {
+      "module": "unison_oscillator",
+      "inputs": {
+        "waveform": "sine",
+        "frequency_hz": {
+          "ref": "n1.hz"
+        },
+        "phase_cycles": 0,
+        "voices": {
+          "ref": "inputs.voices"
+        },
+        "spread_cents": {
+          "ref": "inputs.spread"
+        }
+      }
+    },
+    "n3": {
+      "module": "amplifier",
+      "inputs": {
+        "audio": {
+          "ref": "n2.audio"
+        },
+        "envelope": {
+          "ref": "n0.control"
+        },
+        "gain": 0.15
+      }
+    },
+    "n4": {
+      "module": "place",
+      "inputs": {
+        "audio": {
+          "ref": "n3.audio"
+        },
+        "start_ms": 0,
+        "duration_ms": {
+          "ref": "n0.duration_ms"
+        }
+      }
+    }
+  },
+  "output": {
+    "audio": {
+      "ref": "n4.audio"
+    },
+    "duration_ms": {
+      "ref": "n4.end_ms"
+    }
+  },
+  "inputs": {
+    "voices": {
+      "label": "Voices",
+      "type": "float",
+      "default": 3,
+      "range": [
+        1,
+        5
+      ],
+      "step": 1
+    },
+    "spread": {
+      "label": "Spread",
+      "type": "float",
+      "default": 30,
+      "unit": "ct",
+      "range": [
+        0,
+        1200
+      ],
+      "step": 10
+    }
+  }
+}

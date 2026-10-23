@@ -1,0 +1,222 @@
+{
+  "version": 1,
+  "name": "Two note",
+  "group": "Notification",
+  "render": {
+    "sample_rate": 48000,
+    "channels": 1
+  },
+  "graph": {
+    "first_pitch": {
+      "module": "note_frequency",
+      "inputs": {
+        "note": {
+          "ref": "inputs.note"
+        }
+      }
+    },
+    "first_tone": {
+      "module": "oscillator",
+      "inputs": {
+        "waveform": "sine",
+        "frequency_hz": {
+          "ref": "first_pitch.hz"
+        },
+        "phase_cycles": 0
+      }
+    },
+    "first_envelope": {
+      "module": "envelope_ad",
+      "inputs": {
+        "attack_ms": 3,
+        "decay_ms": {
+          "ref": "inputs.first_decay"
+        },
+        "curve": "linear"
+      }
+    },
+    "first_amp": {
+      "module": "amplifier",
+      "inputs": {
+        "audio": {
+          "ref": "first_tone.audio"
+        },
+        "envelope": {
+          "ref": "first_envelope.control"
+        },
+        "gain": {
+          "ref": "inputs.level"
+        }
+      }
+    },
+    "first_event": {
+      "module": "place",
+      "inputs": {
+        "audio": {
+          "ref": "first_amp.audio"
+        },
+        "start_ms": 0,
+        "duration_ms": {
+          "ref": "first_envelope.duration_ms"
+        }
+      }
+    },
+    "second_note": {
+      "module": "transpose",
+      "inputs": {
+        "note": {
+          "ref": "inputs.note"
+        },
+        "semitones": {
+          "ref": "inputs.interval"
+        }
+      }
+    },
+    "second_pitch": {
+      "module": "note_frequency",
+      "inputs": {
+        "note": {
+          "ref": "second_note.note"
+        }
+      }
+    },
+    "second_tone": {
+      "module": "oscillator",
+      "inputs": {
+        "waveform": "sine",
+        "frequency_hz": {
+          "ref": "second_pitch.hz"
+        },
+        "phase_cycles": 0
+      }
+    },
+    "second_envelope": {
+      "module": "envelope_ad",
+      "inputs": {
+        "attack_ms": 9,
+        "decay_ms": {
+          "ref": "inputs.second_decay"
+        },
+        "curve": "linear"
+      }
+    },
+    "second_amp": {
+      "module": "amplifier",
+      "inputs": {
+        "audio": {
+          "ref": "second_tone.audio"
+        },
+        "envelope": {
+          "ref": "second_envelope.control"
+        },
+        "gain": {
+          "ref": "inputs.level"
+        }
+      }
+    },
+    "second_event": {
+      "module": "place",
+      "inputs": {
+        "audio": {
+          "ref": "second_amp.audio"
+        },
+        "start_ms": {
+          "ref": "inputs.spacing"
+        },
+        "duration_ms": {
+          "ref": "second_envelope.duration_ms"
+        }
+      }
+    },
+    "mix": {
+      "module": "mix",
+      "inputs": {
+        "audio_a": {
+          "ref": "first_event.audio"
+        },
+        "audio_b": {
+          "ref": "second_event.audio"
+        },
+        "duration_a_ms": {
+          "ref": "first_event.end_ms"
+        },
+        "duration_b_ms": {
+          "ref": "second_event.end_ms"
+        }
+      }
+    }
+  },
+  "output": {
+    "audio": {
+      "ref": "mix.audio"
+    },
+    "duration_ms": {
+      "ref": "mix.duration_ms"
+    }
+  },
+  "inputs": {
+    "note": {
+      "label": "Note",
+      "type": "note",
+      "default": "F#5",
+      "range": [
+        "C4",
+        "C6"
+      ]
+    },
+    "interval": {
+      "label": "Interval",
+      "type": "float",
+      "unit": "st",
+      "default": 9,
+      "range": [
+        3,
+        12
+      ],
+      "step": 1
+    },
+    "spacing": {
+      "label": "Spacing",
+      "type": "duration",
+      "unit": "ms",
+      "default": 100,
+      "range": [
+        80,
+        240
+      ],
+      "step": 10
+    },
+    "first_decay": {
+      "label": "First decay",
+      "type": "duration",
+      "unit": "ms",
+      "default": 95,
+      "range": [
+        40,
+        140
+      ],
+      "step": 5
+    },
+    "second_decay": {
+      "label": "Second decay",
+      "type": "duration",
+      "unit": "ms",
+      "default": 190,
+      "range": [
+        100,
+        300
+      ],
+      "step": 10
+    },
+    "level": {
+      "label": "Level",
+      "type": "float",
+      "default": 0.25,
+      "range": [
+        0.08,
+        0.3
+      ],
+      "step": 0.01
+    }
+  }
+}

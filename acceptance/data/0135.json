@@ -1,0 +1,254 @@
+{
+  "version": 1,
+  "name": "High",
+  "render": {
+    "sample_rate": 48000,
+    "channels": 1
+  },
+  "graph": {
+    "n0": {
+      "module": "envelope_segment",
+      "inputs": {
+        "duration_ms": 3,
+        "level": 1,
+        "curve": "ease-out"
+      }
+    },
+    "n1": {
+      "module": "envelope_segment",
+      "inputs": {
+        "previous": {
+          "ref": "n0.shape"
+        },
+        "duration_ms": {
+          "ref": "inputs.hold"
+        },
+        "level": 1,
+        "curve": "linear"
+      }
+    },
+    "n2": {
+      "module": "envelope_segment",
+      "inputs": {
+        "previous": {
+          "ref": "n1.shape"
+        },
+        "duration_ms": 8,
+        "level": 0.18,
+        "curve": -4
+      }
+    },
+    "n3": {
+      "module": "envelope_segment",
+      "inputs": {
+        "previous": {
+          "ref": "n2.shape"
+        },
+        "duration_ms": {
+          "ref": "inputs.decay"
+        },
+        "level": 0,
+        "curve": -4
+      }
+    },
+    "n4": {
+      "module": "envelope_segments",
+      "inputs": {
+        "segments": {
+          "ref": "n3.shape"
+        }
+      }
+    },
+    "n5": {
+      "module": "note_frequency",
+      "inputs": {
+        "note": {
+          "ref": "inputs.note"
+        }
+      }
+    },
+    "n6": {
+      "module": "oscillator",
+      "inputs": {
+        "waveform": "sine",
+        "frequency_hz": {
+          "ref": "n5.hz"
+        },
+        "phase_cycles": 0
+      }
+    },
+    "n7": {
+      "module": "amplifier",
+      "inputs": {
+        "audio": {
+          "ref": "n6.audio"
+        },
+        "envelope": {
+          "ref": "n4.control"
+        },
+        "gain": 0.12
+      }
+    },
+    "n8": {
+      "module": "place",
+      "inputs": {
+        "audio": {
+          "ref": "n7.audio"
+        },
+        "start_ms": 0,
+        "duration_ms": {
+          "ref": "n4.duration_ms"
+        }
+      }
+    },
+    "n9": {
+      "module": "envelope_ahd",
+      "inputs": {
+        "attack_ms": 1,
+        "hold_ms": 0,
+        "decay_ms": {
+          "ref": "inputs.accent_decay"
+        },
+        "attack_curve": "linear",
+        "decay_curve": "ease-out"
+      }
+    },
+    "n10": {
+      "module": "note_frequency",
+      "inputs": {
+        "note": {
+          "ref": "inputs.note"
+        }
+      }
+    },
+    "n11": {
+      "module": "oscillator",
+      "inputs": {
+        "waveform": "saw",
+        "frequency_hz": {
+          "ref": "n10.hz"
+        },
+        "phase_cycles": 0
+      }
+    },
+    "n12": {
+      "module": "lowpass",
+      "inputs": {
+        "audio": {
+          "ref": "n11.audio"
+        },
+        "envelope": {
+          "ref": "n9.control"
+        },
+        "cutoff_hz": 3000,
+        "resonance": 0.7,
+        "amount": 0
+      }
+    },
+    "n13": {
+      "module": "amplifier",
+      "inputs": {
+        "audio": {
+          "ref": "n12.audio"
+        },
+        "envelope": {
+          "ref": "n9.control"
+        },
+        "gain": {
+          "ref": "inputs.accent_level"
+        }
+      }
+    },
+    "n14": {
+      "module": "place",
+      "inputs": {
+        "audio": {
+          "ref": "n13.audio"
+        },
+        "start_ms": 0,
+        "duration_ms": {
+          "ref": "n9.duration_ms"
+        }
+      }
+    },
+    "n15": {
+      "module": "mix",
+      "inputs": {
+        "audio_a": {
+          "ref": "n8.audio"
+        },
+        "audio_b": {
+          "ref": "n14.audio"
+        },
+        "duration_a_ms": {
+          "ref": "n8.end_ms"
+        },
+        "duration_b_ms": {
+          "ref": "n14.end_ms"
+        }
+      }
+    }
+  },
+  "output": {
+    "audio": {
+      "ref": "n15.audio"
+    },
+    "duration_ms": {
+      "ref": "n15.duration_ms"
+    }
+  },
+  "inputs": {
+    "note": {
+      "label": "Note",
+      "type": "note",
+      "default": "C6",
+      "range": [
+        "C5",
+        "C7"
+      ]
+    },
+    "hold": {
+      "label": "Hold",
+      "type": "duration",
+      "default": 20,
+      "unit": "ms",
+      "range": [
+        20,
+        40
+      ],
+      "step": 2
+    },
+    "decay": {
+      "label": "Tail",
+      "type": "duration",
+      "default": 40,
+      "unit": "ms",
+      "range": [
+        20,
+        50
+      ],
+      "step": 5
+    },
+    "accent_level": {
+      "label": "Accent level",
+      "type": "float",
+      "default": 0.03,
+      "range": [
+        0,
+        0.06
+      ],
+      "step": 0.005
+    },
+    "accent_decay": {
+      "label": "Accent decay",
+      "type": "duration",
+      "default": 18,
+      "unit": "ms",
+      "range": [
+        5,
+        30
+      ],
+      "step": 1
+    }
+  }
+}

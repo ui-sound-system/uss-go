@@ -1,0 +1,2303 @@
+{
+  "format_version": 1,
+  "source": {
+    "repository": "ui-sound-system/uss-generator",
+    "revision": "b9536d55e76f38de1ef04237f9de22badbeeb6ef",
+    "sha256": "4da4beb6e5a158f3e77dea86d0b5d2f00103072f379b1c64932bf7d3d3c3352d"
+  },
+  "tolerance": {
+    "float32_absolute": 0.000001,
+    "pcm16_absolute": 1
+  },
+  "cases": [
+    {
+      "name": "one-note/0",
+      "definition": "data/0000.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0000.f32le",
+        "wav": "data/0000.wav"
+      }
+    },
+    {
+      "name": "one-note/1",
+      "definition": "data/0001.json",
+      "inputs": {
+        "note": "G5"
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 5040,
+        "samples": "data/0001.f32le",
+        "wav": "data/0001.wav"
+      }
+    },
+    {
+      "name": "one-note/2",
+      "definition": "data/0002.json",
+      "inputs": {
+        "note": "C7",
+        "decay": 42
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 2160,
+        "samples": "data/0002.f32le",
+        "wav": "data/0002.wav"
+      }
+    },
+    {
+      "name": "descending-tone/3",
+      "definition": "data/0003.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8832,
+        "samples": "data/0003.f32le",
+        "wav": "data/0003.wav"
+      }
+    },
+    {
+      "name": "descending-tone/4",
+      "definition": "data/0004.json",
+      "inputs": {
+        "note": "C4",
+        "drop": -12,
+        "sweep": 20,
+        "attack": 1,
+        "decay": 120,
+        "level": 0.3
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 5808,
+        "samples": "data/0004.f32le",
+        "wav": "data/0004.wav"
+      }
+    },
+    {
+      "name": "two-note/5",
+      "definition": "data/0005.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 16272,
+        "samples": "data/0005.f32le",
+        "wav": "data/0005.wav"
+      }
+    },
+    {
+      "name": "two-note/6",
+      "definition": "data/0006.json",
+      "inputs": {
+        "note": "G5",
+        "interval": 5,
+        "spacing": 80,
+        "first_decay": 140,
+        "second_decay": 100,
+        "level": 0.3
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 9072,
+        "samples": "data/0006.f32le",
+        "wav": "data/0006.wav"
+      }
+    },
+    {
+      "name": "two-note/7",
+      "definition": "data/0007.json",
+      "inputs": {
+        "note": "Db4",
+        "interval": 3.5,
+        "spacing": 81,
+        "first_decay": 42,
+        "second_decay": 106,
+        "level": 0.185
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 9552,
+        "samples": "data/0007.f32le",
+        "wav": "data/0007.wav"
+      }
+    },
+    {
+      "name": "two-note/8",
+      "definition": "data/0008.json",
+      "inputs": {
+        "note": "C7",
+        "interval": 12,
+        "spacing": 240,
+        "first_decay": 140,
+        "second_decay": 300,
+        "level": 0.3
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 26352,
+        "samples": "data/0008.f32le",
+        "wav": "data/0008.wav"
+      }
+    },
+    {
+      "name": "two-note/9",
+      "definition": "data/0009.json",
+      "inputs": {
+        "second_decay": 100
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 10032,
+        "samples": "data/0009.f32le",
+        "wav": "data/0009.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/10",
+      "definition": "data/0010.json",
+      "inputs": {
+        "waveform": "sine"
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0010.f32le",
+        "wav": "data/0010.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/11",
+      "definition": "data/0011.json",
+      "inputs": {
+        "waveform": "triangle"
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0011.f32le",
+        "wav": "data/0011.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/12",
+      "definition": "data/0012.json",
+      "inputs": {
+        "waveform": "saw"
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0012.f32le",
+        "wav": "data/0012.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/13",
+      "definition": "data/0013.json",
+      "inputs": {
+        "waveform": "square"
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0013.f32le",
+        "wav": "data/0013.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/14",
+      "definition": "data/0014.json",
+      "inputs": {
+        "note": "G3",
+        "interval": 7,
+        "spacing": 160,
+        "first_decay": 100,
+        "second_decay": 100
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 12672,
+        "samples": "data/0014.f32le",
+        "wav": "data/0014.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/15",
+      "definition": "data/0015.json",
+      "inputs": {
+        "cutoff": 100,
+        "resonance": 0.5,
+        "filter_amount": 0,
+        "filter_attack": 0
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0015.f32le",
+        "wav": "data/0015.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/16",
+      "definition": "data/0016.json",
+      "inputs": {
+        "cutoff": 4000,
+        "resonance": 2,
+        "filter_amount": 4,
+        "filter_attack": 120
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0016.f32le",
+        "wav": "data/0016.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/17",
+      "definition": "data/0017.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0017.f32le",
+        "wav": "data/0017.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/18",
+      "definition": "data/0018.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0018.f32le",
+        "wav": "data/0018.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/19",
+      "definition": "data/0019.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0019.f32le",
+        "wav": "data/0019.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/20",
+      "definition": "data/0020.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0020.f32le",
+        "wav": "data/0020.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/21",
+      "definition": "data/0021.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0021.f32le",
+        "wav": "data/0021.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/22",
+      "definition": "data/0022.json",
+      "inputs": {
+        "voices": 1,
+        "waveform": "sine",
+        "spread": 50
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0022.f32le",
+        "wav": "data/0022.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/23",
+      "definition": "data/0023.json",
+      "inputs": {
+        "voices": 1,
+        "waveform": "triangle",
+        "spread": 50
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0023.f32le",
+        "wav": "data/0023.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/24",
+      "definition": "data/0024.json",
+      "inputs": {
+        "voices": 1,
+        "waveform": "saw",
+        "spread": 50
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0024.f32le",
+        "wav": "data/0024.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/25",
+      "definition": "data/0025.json",
+      "inputs": {
+        "voices": 1,
+        "waveform": "square",
+        "spread": 50
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0025.f32le",
+        "wav": "data/0025.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/26",
+      "definition": "data/0026.json",
+      "inputs": {
+        "voices": 2,
+        "waveform": "sine",
+        "spread": 50
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0026.f32le",
+        "wav": "data/0026.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/27",
+      "definition": "data/0027.json",
+      "inputs": {
+        "voices": 2,
+        "waveform": "triangle",
+        "spread": 50
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0027.f32le",
+        "wav": "data/0027.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/28",
+      "definition": "data/0028.json",
+      "inputs": {
+        "voices": 2,
+        "waveform": "saw",
+        "spread": 50
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0028.f32le",
+        "wav": "data/0028.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/29",
+      "definition": "data/0029.json",
+      "inputs": {
+        "voices": 2,
+        "waveform": "square",
+        "spread": 50
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0029.f32le",
+        "wav": "data/0029.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/30",
+      "definition": "data/0030.json",
+      "inputs": {
+        "voices": 3,
+        "waveform": "sine",
+        "spread": 50
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0030.f32le",
+        "wav": "data/0030.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/31",
+      "definition": "data/0031.json",
+      "inputs": {
+        "voices": 3,
+        "waveform": "triangle",
+        "spread": 50
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0031.f32le",
+        "wav": "data/0031.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/32",
+      "definition": "data/0032.json",
+      "inputs": {
+        "voices": 3,
+        "waveform": "saw",
+        "spread": 50
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0032.f32le",
+        "wav": "data/0032.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/33",
+      "definition": "data/0033.json",
+      "inputs": {
+        "voices": 3,
+        "waveform": "square",
+        "spread": 50
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0033.f32le",
+        "wav": "data/0033.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/34",
+      "definition": "data/0034.json",
+      "inputs": {
+        "voices": 5,
+        "waveform": "sine",
+        "spread": 50
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0034.f32le",
+        "wav": "data/0034.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/35",
+      "definition": "data/0035.json",
+      "inputs": {
+        "voices": 5,
+        "waveform": "triangle",
+        "spread": 50
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0035.f32le",
+        "wav": "data/0035.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/36",
+      "definition": "data/0036.json",
+      "inputs": {
+        "voices": 5,
+        "waveform": "saw",
+        "spread": 50
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0036.f32le",
+        "wav": "data/0036.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/37",
+      "definition": "data/0037.json",
+      "inputs": {
+        "voices": 5,
+        "waveform": "square",
+        "spread": 50
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0037.f32le",
+        "wav": "data/0037.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/38",
+      "definition": "data/0038.json",
+      "inputs": {
+        "voices": 5,
+        "spread": 0
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0038.f32le",
+        "wav": "data/0038.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/39",
+      "definition": "data/0039.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0039.f32le",
+        "wav": "data/0039.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/40",
+      "definition": "data/0040.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0040.f32le",
+        "wav": "data/0040.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/41",
+      "definition": "data/0041.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0041.f32le",
+        "wav": "data/0041.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/42",
+      "definition": "data/0042.json",
+      "inputs": {
+        "lead_attack_curve": "linear",
+        "lead_decay_curve": "linear",
+        "lead_attack": 80
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0042.f32le",
+        "wav": "data/0042.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/43",
+      "definition": "data/0043.json",
+      "inputs": {
+        "lead_attack_curve": "linear",
+        "lead_decay_curve": "ease-in",
+        "lead_attack": 80
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0043.f32le",
+        "wav": "data/0043.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/44",
+      "definition": "data/0044.json",
+      "inputs": {
+        "lead_attack_curve": "linear",
+        "lead_decay_curve": "ease-out",
+        "lead_attack": 80
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0044.f32le",
+        "wav": "data/0044.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/45",
+      "definition": "data/0045.json",
+      "inputs": {
+        "lead_attack_curve": "ease-in",
+        "lead_decay_curve": "linear",
+        "lead_attack": 80
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0045.f32le",
+        "wav": "data/0045.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/46",
+      "definition": "data/0046.json",
+      "inputs": {
+        "lead_attack_curve": "ease-in",
+        "lead_decay_curve": "ease-in",
+        "lead_attack": 80
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0046.f32le",
+        "wav": "data/0046.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/47",
+      "definition": "data/0047.json",
+      "inputs": {
+        "lead_attack_curve": "ease-in",
+        "lead_decay_curve": "ease-out",
+        "lead_attack": 80
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0047.f32le",
+        "wav": "data/0047.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/48",
+      "definition": "data/0048.json",
+      "inputs": {
+        "lead_attack_curve": "ease-out",
+        "lead_decay_curve": "linear",
+        "lead_attack": 80
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0048.f32le",
+        "wav": "data/0048.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/49",
+      "definition": "data/0049.json",
+      "inputs": {
+        "lead_attack_curve": "ease-out",
+        "lead_decay_curve": "ease-in",
+        "lead_attack": 80
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0049.f32le",
+        "wav": "data/0049.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/50",
+      "definition": "data/0050.json",
+      "inputs": {
+        "lead_attack_curve": "ease-out",
+        "lead_decay_curve": "ease-out",
+        "lead_attack": 80
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0050.f32le",
+        "wav": "data/0050.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/51",
+      "definition": "data/0051.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0051.f32le",
+        "wav": "data/0051.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/52",
+      "definition": "data/0052.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0052.f32le",
+        "wav": "data/0052.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/53",
+      "definition": "data/0053.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0053.f32le",
+        "wav": "data/0053.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/54",
+      "definition": "data/0054.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0054.f32le",
+        "wav": "data/0054.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/55",
+      "definition": "data/0055.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0055.f32le",
+        "wav": "data/0055.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/56",
+      "definition": "data/0056.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0056.f32le",
+        "wav": "data/0056.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/57",
+      "definition": "data/0057.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0057.f32le",
+        "wav": "data/0057.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/58",
+      "definition": "data/0058.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0058.f32le",
+        "wav": "data/0058.wav"
+      }
+    },
+    {
+      "name": "one-note/59",
+      "definition": "data/0059.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0059.f32le",
+        "wav": "data/0059.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/60",
+      "definition": "data/0060.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0060.f32le",
+        "wav": "data/0060.wav"
+      }
+    },
+    {
+      "name": "one-note/61",
+      "definition": "data/0061.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0061.f32le",
+        "wav": "data/0061.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/62",
+      "definition": "data/0062.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0062.f32le",
+        "wav": "data/0062.wav"
+      }
+    },
+    {
+      "name": "one-note/63",
+      "definition": "data/0063.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0063.f32le",
+        "wav": "data/0063.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/64",
+      "definition": "data/0064.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0064.f32le",
+        "wav": "data/0064.wav"
+      }
+    },
+    {
+      "name": "one-note/65",
+      "definition": "data/0065.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0065.f32le",
+        "wav": "data/0065.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/66",
+      "definition": "data/0066.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0066.f32le",
+        "wav": "data/0066.wav"
+      }
+    },
+    {
+      "name": "one-note/67",
+      "definition": "data/0067.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0067.f32le",
+        "wav": "data/0067.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/68",
+      "definition": "data/0068.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0068.f32le",
+        "wav": "data/0068.wav"
+      }
+    },
+    {
+      "name": "one-note/69",
+      "definition": "data/0069.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0069.f32le",
+        "wav": "data/0069.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/70",
+      "definition": "data/0070.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0070.f32le",
+        "wav": "data/0070.wav"
+      }
+    },
+    {
+      "name": "one-note/71",
+      "definition": "data/0071.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0071.f32le",
+        "wav": "data/0071.wav"
+      }
+    },
+    {
+      "name": "one-note/72",
+      "definition": "data/0072.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0072.f32le",
+        "wav": "data/0072.wav"
+      }
+    },
+    {
+      "name": "one-note/73",
+      "definition": "data/0073.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0073.f32le",
+        "wav": "data/0073.wav"
+      }
+    },
+    {
+      "name": "fm-tone/74",
+      "definition": "data/0074.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0074.f32le",
+        "wav": "data/0074.wav"
+      }
+    },
+    {
+      "name": "fm-tone/75",
+      "definition": "data/0075.json",
+      "inputs": {
+        "index": 0
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0075.f32le",
+        "wav": "data/0075.wav"
+      }
+    },
+    {
+      "name": "fm-tone/76",
+      "definition": "data/0076.json",
+      "inputs": {
+        "note": "G5",
+        "decay": 100
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 5040,
+        "samples": "data/0076.f32le",
+        "wav": "data/0076.wav"
+      }
+    },
+    {
+      "name": "fm-tone/77",
+      "definition": "data/0077.json",
+      "inputs": {
+        "note": "C6",
+        "ratio": 4,
+        "index": 3,
+        "level": 0.3
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0077.f32le",
+        "wav": "data/0077.wav"
+      }
+    },
+    {
+      "name": "fm-tone/78",
+      "definition": "data/0078.json",
+      "inputs": {
+        "note": "C4",
+        "ratio": 0.5,
+        "index": 0.1,
+        "decay": 60
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 3120,
+        "samples": "data/0078.f32le",
+        "wav": "data/0078.wav"
+      }
+    },
+    {
+      "name": "fm-tone/79",
+      "definition": "data/0079.json",
+      "inputs": {
+        "ratio": 1.5,
+        "index": 3
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0079.f32le",
+        "wav": "data/0079.wav"
+      }
+    },
+    {
+      "name": "fm-tone/80",
+      "definition": "data/0080.json",
+      "inputs": {
+        "ratio": 1.5,
+        "index": 3
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0080.f32le",
+        "wav": "data/0080.wav"
+      }
+    },
+    {
+      "name": "fm-tone/81",
+      "definition": "data/0081.json",
+      "inputs": {
+        "ratio": 1.5,
+        "index": 3
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0081.f32le",
+        "wav": "data/0081.wav"
+      }
+    },
+    {
+      "name": "fm-tone/82",
+      "definition": "data/0082.json",
+      "inputs": {
+        "ratio": 1.5,
+        "index": 3
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0082.f32le",
+        "wav": "data/0082.wav"
+      }
+    },
+    {
+      "name": "fm-tone/83",
+      "definition": "data/0083.json",
+      "inputs": {
+        "ratio": 1.5,
+        "index": 3
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0083.f32le",
+        "wav": "data/0083.wav"
+      }
+    },
+    {
+      "name": "fm-tone/84",
+      "definition": "data/0084.json",
+      "inputs": {
+        "ratio": 1.5,
+        "index": 3
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0084.f32le",
+        "wav": "data/0084.wav"
+      }
+    },
+    {
+      "name": "fm-tone/85",
+      "definition": "data/0085.json",
+      "inputs": {
+        "ratio": 1.5,
+        "index": 3
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0085.f32le",
+        "wav": "data/0085.wav"
+      }
+    },
+    {
+      "name": "fm-tone/86",
+      "definition": "data/0086.json",
+      "inputs": {
+        "ratio": 1.5,
+        "index": 3
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0086.f32le",
+        "wav": "data/0086.wav"
+      }
+    },
+    {
+      "name": "fm-tone/87",
+      "definition": "data/0087.json",
+      "inputs": {
+        "ratio": 1.5,
+        "index": 3
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0087.f32le",
+        "wav": "data/0087.wav"
+      }
+    },
+    {
+      "name": "fm-tone/88",
+      "definition": "data/0088.json",
+      "inputs": {
+        "index": 0
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0088.f32le",
+        "wav": "data/0088.wav"
+      }
+    },
+    {
+      "name": "waveform-tone/89",
+      "definition": "data/0089.json",
+      "inputs": {
+        "waveform": "sine"
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0089.f32le",
+        "wav": "data/0089.wav"
+      }
+    },
+    {
+      "name": "waveform-tone/90",
+      "definition": "data/0090.json",
+      "inputs": {
+        "note": "C6",
+        "decay": 60,
+        "level": 0.3
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 3120,
+        "samples": "data/0090.f32le",
+        "wav": "data/0090.wav"
+      }
+    },
+    {
+      "name": "waveform-tone/91",
+      "definition": "data/0091.json",
+      "inputs": {
+        "waveform": "triangle"
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0091.f32le",
+        "wav": "data/0091.wav"
+      }
+    },
+    {
+      "name": "waveform-tone/92",
+      "definition": "data/0092.json",
+      "inputs": {
+        "note": "C6",
+        "decay": 60,
+        "level": 0.3
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 3120,
+        "samples": "data/0092.f32le",
+        "wav": "data/0092.wav"
+      }
+    },
+    {
+      "name": "waveform-tone/93",
+      "definition": "data/0093.json",
+      "inputs": {
+        "waveform": "saw"
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0093.f32le",
+        "wav": "data/0093.wav"
+      }
+    },
+    {
+      "name": "waveform-tone/94",
+      "definition": "data/0094.json",
+      "inputs": {
+        "note": "C6",
+        "decay": 60,
+        "level": 0.3
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 3120,
+        "samples": "data/0094.f32le",
+        "wav": "data/0094.wav"
+      }
+    },
+    {
+      "name": "waveform-tone/95",
+      "definition": "data/0095.json",
+      "inputs": {
+        "waveform": "square"
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0095.f32le",
+        "wav": "data/0095.wav"
+      }
+    },
+    {
+      "name": "waveform-tone/96",
+      "definition": "data/0096.json",
+      "inputs": {
+        "note": "C6",
+        "decay": 60,
+        "level": 0.3
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 3120,
+        "samples": "data/0096.f32le",
+        "wav": "data/0096.wav"
+      }
+    },
+    {
+      "name": "legacy-resolved",
+      "definition": "data/0097.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0097.f32le",
+        "wav": "data/0097.wav"
+      }
+    },
+    {
+      "name": "compact/Dev/delayed-bleep.yaml/98",
+      "definition": "data/0098.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/0098.f32le",
+        "wav": "data/0098.wav"
+      }
+    },
+    {
+      "name": "compact/Dev/delayed-bleep.yaml/99",
+      "definition": "data/0099.json",
+      "inputs": {
+        "note": "G3",
+        "delay": 200,
+        "voices": 5,
+        "detune": 20
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 19392,
+        "samples": "data/0099.f32le",
+        "wav": "data/0099.wav"
+      }
+    },
+    {
+      "name": "compact/Dev/test.yaml/100",
+      "definition": "data/0100.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 1104,
+        "samples": "data/0100.f32le",
+        "wav": "data/0100.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/accelerating-sequence.yaml/101",
+      "definition": "data/0101.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 30960,
+        "samples": "data/0101.f32le",
+        "wav": "data/0101.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/envelope.yaml/102",
+      "definition": "data/0102.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 21600,
+        "samples": "data/0102.f32le",
+        "wav": "data/0102.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/filter-envelope-amount.yaml/103",
+      "definition": "data/0103.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 96480,
+        "samples": "data/0103.f32le",
+        "wav": "data/0103.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/fm-brightness.yaml/104",
+      "definition": "data/0104.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 26976,
+        "samples": "data/0104.f32le",
+        "wav": "data/0104.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/fm-brightness.yaml/105",
+      "definition": "data/0105.json",
+      "inputs": {
+        "index": 0
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 26976,
+        "samples": "data/0105.f32le",
+        "wav": "data/0105.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/fm-brightness.yaml/106",
+      "definition": "data/0106.json",
+      "inputs": {
+        "brightness_attack": 120,
+        "brightness_decay": 500,
+        "tone_decay": 200
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 9696,
+        "samples": "data/0106.f32le",
+        "wav": "data/0106.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/fm-brightness.yaml/107",
+      "definition": "data/0107.json",
+      "inputs": {
+        "note": "C5",
+        "ratio": 4,
+        "index": 8,
+        "brightness_attack": 0,
+        "brightness_decay": 20
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 26976,
+        "samples": "data/0107.f32le",
+        "wav": "data/0107.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/fm.yaml/108",
+      "definition": "data/0108.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 36480,
+        "samples": "data/0108.f32le",
+        "wav": "data/0108.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/generated-scale.yaml/109",
+      "definition": "data/0109.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 56160,
+        "samples": "data/0109.f32le",
+        "wav": "data/0109.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/low-pass-cutoff.yaml/110",
+      "definition": "data/0110.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 41280,
+        "samples": "data/0110.f32le",
+        "wav": "data/0110.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/noise-layers.yaml/111",
+      "definition": "data/0111.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 6336,
+        "samples": "data/0111.f32le",
+        "wav": "data/0111.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/noise-layers.yaml/112",
+      "definition": "data/0112.json",
+      "inputs": {
+        "noise_level": 0
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 6336,
+        "samples": "data/0112.f32le",
+        "wav": "data/0112.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/noise-layers.yaml/113",
+      "definition": "data/0113.json",
+      "inputs": {
+        "tone_level": 0,
+        "seed": 0
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 6336,
+        "samples": "data/0113.f32le",
+        "wav": "data/0113.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/noise-layers.yaml/114",
+      "definition": "data/0114.json",
+      "inputs": {
+        "noise_decay": 200,
+        "noise_cutoff": 200,
+        "seed": 99
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 9648,
+        "samples": "data/0114.f32le",
+        "wav": "data/0114.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/noise-layers.yaml/115",
+      "definition": "data/0115.json",
+      "inputs": {
+        "noise_cutoff": 16000,
+        "seed": 2
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 6336,
+        "samples": "data/0115.f32le",
+        "wav": "data/0115.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/one-note.yaml/116",
+      "definition": "data/0116.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0116.f32le",
+        "wav": "data/0116.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/pitch-sweep.yaml/117",
+      "definition": "data/0117.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 36480,
+        "samples": "data/0117.f32le",
+        "wav": "data/0117.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/resonance.yaml/118",
+      "definition": "data/0118.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 41280,
+        "samples": "data/0118.f32le",
+        "wav": "data/0118.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/reverb-trim.yaml/119",
+      "definition": "data/0119.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 66612,
+        "samples": "data/0119.f32le",
+        "wav": "data/0119.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/reverb-trim.yaml/120",
+      "definition": "data/0120.json",
+      "inputs": {
+        "threshold": 30
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 25726,
+        "samples": "data/0120.f32le",
+        "wav": "data/0120.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/reverb-trim.yaml/121",
+      "definition": "data/0121.json",
+      "inputs": {
+        "threshold": 100
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 116840,
+        "samples": "data/0121.f32le",
+        "wav": "data/0121.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/reverb.yaml/122",
+      "definition": "data/0122.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 66612,
+        "samples": "data/0122.f32le",
+        "wav": "data/0122.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/reverb.yaml/123",
+      "definition": "data/0123.json",
+      "inputs": {
+        "send": 0
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 3984,
+        "samples": "data/0123.f32le",
+        "wav": "data/0123.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/reverb.yaml/124",
+      "definition": "data/0124.json",
+      "inputs": {
+        "wet": 0
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 3984,
+        "samples": "data/0124.f32le",
+        "wav": "data/0124.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/reverb.yaml/125",
+      "definition": "data/0125.json",
+      "inputs": {
+        "pre_delay": 0,
+        "room_size": 0,
+        "damping": 0,
+        "decay": 100,
+        "wet": 1
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 10522,
+        "samples": "data/0125.f32le",
+        "wav": "data/0125.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/reverb.yaml/126",
+      "definition": "data/0126.json",
+      "inputs": {
+        "room_size": 1,
+        "damping": 1,
+        "decay": 500
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 26242,
+        "samples": "data/0126.f32le",
+        "wav": "data/0126.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/segmented-envelope.yaml/127",
+      "definition": "data/0127.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 7920,
+        "samples": "data/0127.f32le",
+        "wav": "data/0127.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/segmented-envelope.yaml/128",
+      "definition": "data/0128.json",
+      "inputs": {
+        "body": 0,
+        "curvature": -8,
+        "tail_level": 0
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 6960,
+        "samples": "data/0128.f32le",
+        "wav": "data/0128.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/segmented-envelope.yaml/129",
+      "definition": "data/0129.json",
+      "inputs": {
+        "curvature": 0,
+        "tail_duration": 500
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 26160,
+        "samples": "data/0129.f32le",
+        "wav": "data/0129.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/segmented-envelope.yaml/130",
+      "definition": "data/0130.json",
+      "inputs": {
+        "curvature": 8,
+        "tail_level": 0.5
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 7920,
+        "samples": "data/0130.f32le",
+        "wav": "data/0130.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/sequence-level-ramp.yaml/131",
+      "definition": "data/0131.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 34560,
+        "samples": "data/0131.f32le",
+        "wav": "data/0131.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/sequence.yaml/132",
+      "definition": "data/0132.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 27360,
+        "samples": "data/0132.f32le",
+        "wav": "data/0132.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/two-voices.yaml/133",
+      "definition": "data/0133.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 14400,
+        "samples": "data/0133.f32le",
+        "wav": "data/0133.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/unison.yaml/134",
+      "definition": "data/0134.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 41280,
+        "samples": "data/0134.f32le",
+        "wav": "data/0134.wav"
+      }
+    },
+    {
+      "name": "compact/Press (short)/high.yaml/135",
+      "definition": "data/0135.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 3408,
+        "samples": "data/0135.f32le",
+        "wav": "data/0135.wav"
+      }
+    },
+    {
+      "name": "compact/Press (short)/unison.yaml/136",
+      "definition": "data/0136.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 3120,
+        "samples": "data/0136.f32le",
+        "wav": "data/0136.wav"
+      }
+    },
+    {
+      "name": "compact/Tick/textured.yaml/137",
+      "definition": "data/0137.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 1104,
+        "samples": "data/0137.f32le",
+        "wav": "data/0137.wav"
+      }
+    },
+    {
+      "name": "compact/fixtures/rising-scale.yaml/138",
+      "definition": "data/0138.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 46704,
+        "samples": "data/0138.f32le",
+        "wav": "data/0138.wav"
+      }
+    },
+    {
+      "name": "compact/fixtures/rising-scale.yaml/139",
+      "definition": "data/0139.json",
+      "inputs": {
+        "spacing": 50
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 25104,
+        "samples": "data/0139.f32le",
+        "wav": "data/0139.wav"
+      }
+    },
+    {
+      "name": "compact/fixtures/accelerating-scale.yaml/140",
+      "definition": "data/0140.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 46704,
+        "samples": "data/0140.f32le",
+        "wav": "data/0140.wav"
+      }
+    },
+    {
+      "name": "compact/fixtures/accelerating-scale.yaml/141",
+      "definition": "data/0141.json",
+      "inputs": {
+        "root": "D4",
+        "slow": 100,
+        "fast": 20
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 29424,
+        "samples": "data/0141.f32le",
+        "wav": "data/0141.wav"
+      }
+    },
+    {
+      "name": "trim/true",
+      "definition": "data/0142.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 11528,
+        "samples": "data/0142.f32le",
+        "wav": "data/0142.wav"
+      }
+    },
+    {
+      "name": "trim/false",
+      "definition": "data/0143.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 23568,
+        "samples": "data/0143.f32le",
+        "wav": "data/0143.wav"
+      }
+    },
+    {
+      "name": "trim/\"0db\"",
+      "definition": "data/0144.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 3953,
+        "samples": "data/0144.f32le",
+        "wav": "data/0144.wav"
+      }
+    },
+    {
+      "name": "trim/\"50db\"",
+      "definition": "data/0145.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 10658,
+        "samples": "data/0145.f32le",
+        "wav": "data/0145.wav"
+      }
+    },
+    {
+      "name": "trim/\"120db\"",
+      "definition": "data/0146.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 17108,
+        "samples": "data/0146.f32le",
+        "wav": "data/0146.wav"
+      }
+    },
+    {
+      "name": "trim/{\"enabled\":true,\"threshold\":\"50db\"}",
+      "definition": "data/0147.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 10658,
+        "samples": "data/0147.f32le",
+        "wav": "data/0147.wav"
+      }
+    },
+    {
+      "name": "trim/{\"enabled\":false}",
+      "definition": "data/0148.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 23568,
+        "samples": "data/0148.f32le",
+        "wav": "data/0148.wav"
+      }
+    },
+    {
+      "name": "trim/override/50",
+      "definition": "data/0149.json",
+      "inputs": {
+        "cutoff": 50
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 10658,
+        "samples": "data/0149.f32le",
+        "wav": "data/0149.wav"
+      }
+    },
+    {
+      "name": "trim/override/100",
+      "definition": "data/0150.json",
+      "inputs": {
+        "cutoff": 100
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 15408,
+        "samples": "data/0150.f32le",
+        "wav": "data/0150.wav"
+      }
+    },
+    {
+      "name": "trim/silence",
+      "definition": "data/0151.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 4944,
+        "samples": "data/0151.f32le",
+        "wav": "data/0151.wav"
+      }
+    },
+    {
+      "name": "reverb/shared-noise-sequence/152",
+      "definition": "data/0152.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 11528,
+        "samples": "data/0152.f32le",
+        "wav": "data/0152.wav"
+      }
+    },
+    {
+      "name": "reverb/shared-noise-sequence/153",
+      "definition": "data/0153.json",
+      "inputs": {
+        "send": 0
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 3888,
+        "samples": "data/0153.f32le",
+        "wav": "data/0153.wav"
+      }
+    },
+    {
+      "name": "reverb/shared-noise-sequence/154",
+      "definition": "data/0154.json",
+      "inputs": {
+        "send": 1
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 12193,
+        "samples": "data/0154.f32le",
+        "wav": "data/0154.wav"
+      }
+    },
+    {
+      "name": "segments/filter-fm-overlap/155",
+      "definition": "data/0155.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 11040,
+        "samples": "data/0155.f32le",
+        "wav": "data/0155.wav"
+      }
+    },
+    {
+      "name": "segments/filter-fm-overlap/156",
+      "definition": "data/0156.json",
+      "inputs": {
+        "curvature": "linear",
+        "tail_duration": 500
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 11040,
+        "samples": "data/0156.f32le",
+        "wav": "data/0156.wav"
+      }
+    },
+    {
+      "name": "segments/filter-fm-overlap/157",
+      "definition": "data/0157.json",
+      "inputs": {
+        "curvature": "ease-in"
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 11040,
+        "samples": "data/0157.f32le",
+        "wav": "data/0157.wav"
+      }
+    },
+    {
+      "name": "segments/zero-stages",
+      "definition": "data/0158.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 1920,
+        "samples": "data/0158.f32le",
+        "wav": "data/0158.wav"
+      }
+    },
+    {
+      "name": "compact/level-ramp/159",
+      "definition": "data/0159.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 13104,
+        "samples": "data/0159.f32le",
+        "wav": "data/0159.wav"
+      }
+    },
+    {
+      "name": "compact/level-ramp/160",
+      "definition": "data/0160.json",
+      "inputs": {
+        "quiet": 0.08,
+        "loud": 0.25
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 13104,
+        "samples": "data/0160.f32le",
+        "wav": "data/0160.wav"
+      }
+    },
+    {
+      "name": "noise/shared/0",
+      "definition": "data/0161.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 2400,
+        "samples": "data/0161.f32le",
+        "wav": "data/0161.wav"
+      }
+    },
+    {
+      "name": "noise/shared/1",
+      "definition": "data/0162.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 2400,
+        "samples": "data/0162.f32le",
+        "wav": "data/0162.wav"
+      }
+    },
+    {
+      "name": "noise/shared/2147483648",
+      "definition": "data/0163.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 2400,
+        "samples": "data/0163.f32le",
+        "wav": "data/0163.wav"
+      }
+    },
+    {
+      "name": "noise/shared/4294967295",
+      "definition": "data/0164.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 2400,
+        "samples": "data/0164.f32le",
+        "wav": "data/0164.wav"
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "name": "FM tone",
+  "group": "Notification",
+  "render": {
+    "sample_rate": 48000,
+    "channels": 1
+  },
+  "graph": {
+    "pitch": {
+      "module": "note_frequency",
+      "inputs": {
+        "note": "C5"
+      }
+    },
+    "tone": {
+      "module": "fm_oscillator",
+      "inputs": {
+        "frequency_hz": {
+          "ref": "pitch.hz"
+        },
+        "ratio": 2,
+        "index": 1.2
+      }
+    },
+    "envelope": {
+      "module": "envelope_ad",
+      "inputs": {
+        "attack_ms": 5,
+        "decay_ms": 180,
+        "curve": "linear"
+      }
+    },
+    "amp": {
+      "module": "amplifier",
+      "inputs": {
+        "audio": {
+          "ref": "tone.audio"
+        },
+        "envelope": {
+          "ref": "envelope.control"
+        },
+        "gain": 0.18
+      }
+    }
+  },
+  "output": {
+    "audio": {
+      "ref": "amp.audio"
+    },
+    "duration_ms": {
+      "ref": "envelope.duration_ms"
+    }
+  }
+}
