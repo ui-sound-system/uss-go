@@ -1,0 +1,39 @@
+name: ci
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-go@v7
+        with:
+          go-version: stable
+          cache: false
+      - name: Check formatting
+        run: |
+          unformatted_files=$(gofmt -l .)
+          if [[ -n "$unformatted_files" ]]; then
+            echo "$unformatted_files"
+            exit 1
+          fi
+      - name: Vet
+        run: go vet ./...
+      - name: Test unit and acceptance cases
+        run: go test ./...
+      - name: Build player
+        run: go build ./examples/player

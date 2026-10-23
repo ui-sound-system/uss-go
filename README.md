@@ -45,3 +45,6 @@ During development, keep `uss-generator` and `uss-go` as siblings. From the
 generator run `op acceptance-generate`, review the reference changes, then run
 `op acceptance-sync` and `op acceptance-check`. Each repository versions its own
 suite copy. Git commits and releases are managed separately.
+
+GitHub Actions checks formatting, vet, unit and acceptance tests, and the player
+build on Linux and Windows for pushes to main/master and pull requests.
