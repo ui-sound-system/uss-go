@@ -4,6 +4,12 @@ Render [UI Sound System](https://github.com/ui-sound-system/uss-generator) playb
 JSON in Go. The library has no external dependencies and needs no browser, Node,
 YAML parser, or audio device. Rendering produces mono Float32 samples at 48 kHz.
 
+Requires Go 1.26+.
+
+```sh
+go get github.com/ui-sound-system/uss-go/synth
+```
+
 ```go
 import "github.com/ui-sound-system/uss-go/synth"
 
