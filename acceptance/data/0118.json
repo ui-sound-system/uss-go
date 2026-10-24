@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "name": "Resonance",
+  "name": "fm",
   "render": {
     "sample_rate": 48000,
     "channels": 1
@@ -10,8 +10,8 @@
       "module": "envelope_ahd",
       "inputs": {
         "attack_ms": 10,
-        "hold_ms": 700,
-        "decay_ms": 150,
+        "hold_ms": 500,
+        "decay_ms": 250,
         "attack_curve": "linear",
         "decay_curve": "linear"
       }
@@ -23,17 +23,21 @@
       }
     },
     "n2": {
-      "module": "oscillator",
+      "module": "fm_oscillator",
       "inputs": {
-        "waveform": "saw",
         "frequency_hz": {
           "ref": "n1.hz"
         },
-        "phase_cycles": 0
+        "ratio": {
+          "ref": "inputs.ratio"
+        },
+        "index": {
+          "ref": "inputs.index"
+        }
       }
     },
     "n3": {
-      "module": "lowpass",
+      "module": "amplifier",
       "inputs": {
         "audio": {
           "ref": "n2.audio"
@@ -41,30 +45,14 @@
         "envelope": {
           "ref": "n0.control"
         },
-        "cutoff_hz": 1000,
-        "resonance": {
-          "ref": "inputs.resonance"
-        },
-        "amount": 0
+        "gain": 0.15
       }
     },
     "n4": {
-      "module": "amplifier",
-      "inputs": {
-        "audio": {
-          "ref": "n3.audio"
-        },
-        "envelope": {
-          "ref": "n0.control"
-        },
-        "gain": 0.08
-      }
-    },
-    "n5": {
       "module": "place",
       "inputs": {
         "audio": {
-          "ref": "n4.audio"
+          "ref": "n3.audio"
         },
         "start_ms": 0,
         "duration_ms": {
@@ -75,22 +63,32 @@
   },
   "output": {
     "audio": {
-      "ref": "n5.audio"
+      "ref": "n4.audio"
     },
     "duration_ms": {
-      "ref": "n5.end_ms"
+      "ref": "n4.end_ms"
     }
   },
   "inputs": {
-    "resonance": {
-      "label": "Resonance",
+    "ratio": {
+      "label": "Ratio",
       "type": "float",
-      "default": 0.5,
+      "default": 2,
       "range": [
         0.5,
-        10
+        8
       ],
       "step": 0.5
+    },
+    "index": {
+      "label": "Index",
+      "type": "float",
+      "default": 1,
+      "range": [
+        0,
+        8
+      ],
+      "step": 0.25
     }
   }
 }

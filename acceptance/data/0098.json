@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "name": "Delayed bleep",
+  "name": "delayed-bleep",
   "render": {
     "sample_rate": 48000,
     "channels": 1

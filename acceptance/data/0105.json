@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "name": "FM brightness",
+  "name": "tick",
   "render": {
     "sample_rate": 48000,
     "channels": 1
@@ -9,13 +9,15 @@
     "n0": {
       "module": "envelope_ahd",
       "inputs": {
-        "attack_ms": 2,
+        "attack_ms": {
+          "ref": "inputs.attack"
+        },
         "hold_ms": 0,
         "decay_ms": {
-          "ref": "inputs.tone_decay"
+          "ref": "inputs.decay"
         },
-        "attack_curve": "linear",
-        "decay_curve": "ease-out"
+        "attack_curve": -1,
+        "decay_curve": -5
       }
     },
     "n1": {
@@ -27,53 +29,36 @@
       }
     },
     "n2": {
-      "module": "envelope_ahd",
+      "module": "oscillator",
       "inputs": {
-        "attack_ms": {
-          "ref": "inputs.brightness_attack"
+        "waveform": {
+          "ref": "inputs.waveform"
         },
-        "hold_ms": 0,
-        "decay_ms": {
-          "ref": "inputs.brightness_decay"
-        },
-        "attack_curve": "linear",
-        "decay_curve": "ease-out"
-      }
-    },
-    "n3": {
-      "module": "fm_oscillator",
-      "inputs": {
         "frequency_hz": {
           "ref": "n1.hz"
         },
-        "ratio": {
-          "ref": "inputs.ratio"
-        },
-        "index": {
-          "ref": "inputs.index"
-        },
-        "envelope": {
-          "ref": "n2.control"
-        }
+        "phase_cycles": 0
       }
     },
-    "n4": {
+    "n3": {
       "module": "amplifier",
       "inputs": {
         "audio": {
-          "ref": "n3.audio"
+          "ref": "n2.audio"
         },
         "envelope": {
           "ref": "n0.control"
         },
-        "gain": 0.15
+        "gain": {
+          "ref": "inputs.level"
+        }
       }
     },
-    "n5": {
+    "n4": {
       "module": "place",
       "inputs": {
         "audio": {
-          "ref": "n4.audio"
+          "ref": "n3.audio"
         },
         "start_ms": 0,
         "duration_ms": {
@@ -84,74 +69,64 @@
   },
   "output": {
     "audio": {
-      "ref": "n5.audio"
+      "ref": "n4.audio"
     },
     "duration_ms": {
-      "ref": "n5.end_ms"
+      "ref": "n4.end_ms"
     }
   },
   "inputs": {
     "note": {
-      "label": "Note",
+      "label": "Oscillator pitch",
       "type": "note",
       "default": "A3",
       "range": [
-        "C3",
+        "C2",
         "C5"
       ]
     },
-    "ratio": {
-      "label": "Ratio",
-      "type": "float",
-      "default": 3,
+    "waveform": {
+      "label": "Waveform",
+      "type": "choice",
+      "default": "square",
+      "choices": [
+        "sine",
+        "triangle",
+        "saw",
+        "square"
+      ]
+    },
+    "attack": {
+      "label": "Attack",
+      "type": "duration",
+      "default": 2,
+      "unit": "ms",
       "range": [
-        0.5,
-        4
+        0,
+        5
       ],
       "step": 0.5
     },
-    "index": {
-      "label": "Index",
-      "type": "float",
-      "default": 2,
-      "range": [
-        0,
-        8
-      ],
-      "step": 0.25
-    },
-    "brightness_attack": {
-      "label": "Brightness attack",
+    "decay": {
+      "label": "Decay",
       "type": "duration",
-      "default": 80,
+      "default": 10,
       "unit": "ms",
       "range": [
-        0,
-        120
+        1,
+        30
       ],
       "step": 1
     },
-    "brightness_decay": {
-      "label": "Brightness decay",
-      "type": "duration",
-      "default": 120,
-      "unit": "ms",
+    "level": {
+      "label": "Level",
+      "type": "float",
+      "default": 0.05,
       "range": [
-        20,
-        500
+        0,
+        0.1
       ],
-      "step": 10
-    },
-    "tone_decay": {
-      "label": "Tone decay",
-      "type": "duration",
-      "default": 560,
-      "unit": "ms",
-      "range": [
-        200,
-        1000
-      ],
-      "step": 10
+      "step": 0.001
     }
   }
 }

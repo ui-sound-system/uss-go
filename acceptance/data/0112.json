@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "name": "Noise layers",
+  "name": "envelope",
   "render": {
     "sample_rate": 48000,
     "channels": 1
@@ -9,19 +9,27 @@
     "n0": {
       "module": "envelope_ahd",
       "inputs": {
-        "attack_ms": 2,
-        "hold_ms": 0,
-        "decay_ms": 130,
-        "attack_curve": "linear",
-        "decay_curve": "ease-out"
+        "attack_ms": {
+          "ref": "inputs.attack"
+        },
+        "hold_ms": {
+          "ref": "inputs.hold"
+        },
+        "decay_ms": {
+          "ref": "inputs.decay"
+        },
+        "attack_curve": {
+          "ref": "inputs.attack_curve"
+        },
+        "decay_curve": {
+          "ref": "inputs.decay_curve"
+        }
       }
     },
     "n1": {
       "module": "note_frequency",
       "inputs": {
-        "note": {
-          "ref": "inputs.note"
-        }
+        "note": "G4"
       }
     },
     "n2": {
@@ -43,9 +51,7 @@
         "envelope": {
           "ref": "n0.control"
         },
-        "gain": {
-          "ref": "inputs.tone_level"
-        }
+        "gain": 0.15
       }
     },
     "n4": {
@@ -59,156 +65,69 @@
           "ref": "n0.duration_ms"
         }
       }
-    },
-    "n5": {
-      "module": "envelope_ahd",
-      "inputs": {
-        "attack_ms": 1,
-        "hold_ms": 0,
-        "decay_ms": {
-          "ref": "inputs.noise_decay"
-        },
-        "attack_curve": "linear",
-        "decay_curve": "ease-out"
-      }
-    },
-    "n6": {
-      "module": "noise",
-      "inputs": {
-        "seed": {
-          "ref": "inputs.seed"
-        }
-      }
-    },
-    "n7": {
-      "module": "lowpass",
-      "inputs": {
-        "audio": {
-          "ref": "n6.audio"
-        },
-        "envelope": {
-          "ref": "n5.control"
-        },
-        "cutoff_hz": {
-          "ref": "inputs.noise_cutoff"
-        },
-        "resonance": 0.707,
-        "amount": 0
-      }
-    },
-    "n8": {
-      "module": "amplifier",
-      "inputs": {
-        "audio": {
-          "ref": "n7.audio"
-        },
-        "envelope": {
-          "ref": "n5.control"
-        },
-        "gain": {
-          "ref": "inputs.noise_level"
-        }
-      }
-    },
-    "n9": {
-      "module": "place",
-      "inputs": {
-        "audio": {
-          "ref": "n8.audio"
-        },
-        "start_ms": 0,
-        "duration_ms": {
-          "ref": "n5.duration_ms"
-        }
-      }
-    },
-    "n10": {
-      "module": "mix",
-      "inputs": {
-        "audio_a": {
-          "ref": "n4.audio"
-        },
-        "audio_b": {
-          "ref": "n9.audio"
-        },
-        "duration_a_ms": {
-          "ref": "n4.end_ms"
-        },
-        "duration_b_ms": {
-          "ref": "n9.end_ms"
-        }
-      }
     }
   },
   "output": {
     "audio": {
-      "ref": "n10.audio"
+      "ref": "n4.audio"
     },
     "duration_ms": {
-      "ref": "n10.duration_ms"
+      "ref": "n4.end_ms"
     }
   },
   "inputs": {
-    "note": {
-      "label": "Note",
-      "type": "note",
-      "default": "C5",
-      "range": [
-        "C4",
-        "C6"
-      ]
-    },
-    "tone_level": {
-      "label": "Tone level",
-      "type": "float",
-      "default": 0.12,
-      "range": [
-        0,
-        0.25
-      ],
-      "step": 0.01
-    },
-    "noise_level": {
-      "label": "Noise level",
-      "type": "float",
-      "default": 0.18,
-      "range": [
-        0,
-        0.3
-      ],
-      "step": 0.01
-    },
-    "noise_decay": {
-      "label": "Noise decay",
+    "attack": {
+      "label": "Attack",
       "type": "duration",
-      "default": 35,
+      "default": 100,
       "unit": "ms",
       "range": [
-        5,
-        200
+        0,
+        500
       ],
-      "step": 5
+      "step": 10
     },
-    "noise_cutoff": {
-      "label": "Noise cutoff",
-      "type": "float",
-      "default": 3000,
-      "unit": "Hz",
-      "range": [
-        200,
-        16000
-      ],
-      "step": 100
-    },
-    "seed": {
-      "label": "Seed",
-      "type": "float",
-      "default": 1,
+    "hold": {
+      "label": "Hold",
+      "type": "duration",
+      "default": 100,
+      "unit": "ms",
       "range": [
         0,
-        99
+        500
       ],
-      "step": 1
+      "step": 10
+    },
+    "decay": {
+      "label": "Decay",
+      "type": "duration",
+      "default": 250,
+      "unit": "ms",
+      "range": [
+        20,
+        1000
+      ],
+      "step": 10
+    },
+    "attack_curve": {
+      "label": "Attack curve",
+      "type": "choice",
+      "default": "linear",
+      "choices": [
+        "linear",
+        "ease-in",
+        "ease-out"
+      ]
+    },
+    "decay_curve": {
+      "label": "Decay curve",
+      "type": "choice",
+      "default": "linear",
+      "choices": [
+        "linear",
+        "ease-in",
+        "ease-out"
+      ]
     }
   }
 }

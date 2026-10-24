@@ -30,4 +30,20 @@ func init() {
 		"duration_lerp":     {[]string{"from_ms", "to_ms", "position", "multiplier", "offset_ms"}, durationLerp},
 		"mix":               {[]string{"audio_a", "audio_b", "duration_a_ms", "duration_b_ms"}, mix},
 	}
+	for _, spec := range []struct{ name, left, right, output, op string }{
+		{"number_add", "number", "number", "number", "add"},
+		{"number_subtract", "number", "number", "number", "subtract"},
+		{"number_multiply", "number", "number", "number", "multiply"},
+		{"number_divide", "number", "number", "number", "divide"},
+		{"duration_add", "duration", "duration", "duration", "add"},
+		{"duration_subtract", "duration", "duration", "duration", "subtract"},
+		{"duration_multiply", "duration", "number", "duration", "multiply"},
+		{"duration_divide", "duration", "number", "duration", "divide"},
+		{"duration_ratio", "duration", "duration", "number", "ratio"},
+	} {
+		modules[spec.name] = moduleSpec{[]string{"a", "b"}, arithmetic(spec.op, spec.left, spec.right, spec.output)}
+	}
+	for _, kind := range []string{"number", "duration", "note", "text", "audio"} {
+		modules[kind+"_select"] = moduleSpec{[]string{"selector", "match", "if_true", "if_false"}, selection(kind)}
+	}
 }

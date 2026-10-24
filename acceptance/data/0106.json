@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "name": "FM brightness",
+  "name": "unison",
   "render": {
     "sample_rate": 48000,
     "channels": 1
@@ -9,10 +9,12 @@
     "n0": {
       "module": "envelope_ahd",
       "inputs": {
-        "attack_ms": 2,
-        "hold_ms": 0,
+        "attack_ms": 5,
+        "hold_ms": {
+          "ref": "inputs.hold"
+        },
         "decay_ms": {
-          "ref": "inputs.tone_decay"
+          "ref": "inputs.decay"
         },
         "attack_curve": "linear",
         "decay_curve": "ease-out"
@@ -27,41 +29,24 @@
       }
     },
     "n2": {
-      "module": "envelope_ahd",
+      "module": "unison_oscillator",
       "inputs": {
-        "attack_ms": {
-          "ref": "inputs.brightness_attack"
-        },
-        "hold_ms": 0,
-        "decay_ms": {
-          "ref": "inputs.brightness_decay"
-        },
-        "attack_curve": "linear",
-        "decay_curve": "ease-out"
-      }
-    },
-    "n3": {
-      "module": "fm_oscillator",
-      "inputs": {
+        "waveform": "sine",
         "frequency_hz": {
           "ref": "n1.hz"
         },
-        "ratio": {
-          "ref": "inputs.ratio"
-        },
-        "index": {
-          "ref": "inputs.index"
-        },
-        "envelope": {
-          "ref": "n2.control"
+        "phase_cycles": 0,
+        "voices": 3,
+        "spread_cents": {
+          "ref": "inputs.unison"
         }
       }
     },
-    "n4": {
+    "n3": {
       "module": "amplifier",
       "inputs": {
         "audio": {
-          "ref": "n3.audio"
+          "ref": "n2.audio"
         },
         "envelope": {
           "ref": "n0.control"
@@ -69,11 +54,11 @@
         "gain": 0.15
       }
     },
-    "n5": {
+    "n4": {
       "module": "place",
       "inputs": {
         "audio": {
-          "ref": "n4.audio"
+          "ref": "n3.audio"
         },
         "start_ms": 0,
         "duration_ms": {
@@ -84,72 +69,52 @@
   },
   "output": {
     "audio": {
-      "ref": "n5.audio"
+      "ref": "n4.audio"
     },
     "duration_ms": {
-      "ref": "n5.end_ms"
+      "ref": "n4.end_ms"
     }
   },
   "inputs": {
     "note": {
       "label": "Note",
       "type": "note",
-      "default": "A3",
+      "default": "C5",
       "range": [
         "C3",
-        "C5"
+        "C7"
       ]
     },
-    "ratio": {
-      "label": "Ratio",
-      "type": "float",
-      "default": 3,
-      "range": [
-        0.5,
-        4
-      ],
-      "step": 0.5
-    },
-    "index": {
-      "label": "Index",
-      "type": "float",
-      "default": 2,
-      "range": [
-        0,
-        8
-      ],
-      "step": 0.25
-    },
-    "brightness_attack": {
-      "label": "Brightness attack",
+    "hold": {
+      "label": "Hold",
       "type": "duration",
-      "default": 80,
-      "unit": "ms",
-      "range": [
-        0,
-        120
-      ],
-      "step": 1
-    },
-    "brightness_decay": {
-      "label": "Brightness decay",
-      "type": "duration",
-      "default": 120,
+      "default": 20,
       "unit": "ms",
       "range": [
         20,
-        500
+        40
       ],
-      "step": 10
+      "step": 2
     },
-    "tone_decay": {
-      "label": "Tone decay",
+    "decay": {
+      "label": "Decay",
       "type": "duration",
-      "default": 560,
+      "default": 40,
       "unit": "ms",
       "range": [
-        200,
-        1000
+        20,
+        50
+      ],
+      "step": 5
+    },
+    "unison": {
+      "label": "Unison",
+      "type": "float",
+      "default": 30,
+      "unit": "ct",
+      "range": [
+        0,
+        1200
       ],
       "step": 10
     }

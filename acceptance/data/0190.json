@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "name": "Shared noise",
+  "render": {
+    "sample_rate": 48000,
+    "channels": 1
+  },
+  "graph": {
+    "noise": {
+      "module": "noise",
+      "inputs": {
+        "seed": 4294967295
+      }
+    },
+    "echo": {
+      "module": "place",
+      "inputs": {
+        "audio": {
+          "ref": "noise.audio"
+        },
+        "start_ms": 10.01,
+        "duration_ms": 30
+      }
+    },
+    "mix": {
+      "module": "mix",
+      "inputs": {
+        "audio_a": {
+          "ref": "noise.audio"
+        },
+        "audio_b": {
+          "ref": "echo.audio"
+        },
+        "duration_a_ms": 50,
+        "duration_b_ms": 40.01
+      }
+    }
+  },
+  "output": {
+    "audio": {
+      "ref": "mix.audio"
+    },
+    "duration_ms": 50
+  }
+}

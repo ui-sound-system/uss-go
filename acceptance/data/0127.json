@@ -1,172 +1,105 @@
 {
   "version": 1,
-  "name": "Segmented envelope",
+  "name": "pitch-sweep",
   "render": {
     "sample_rate": 48000,
     "channels": 1
   },
   "graph": {
     "n0": {
-      "module": "envelope_segment",
+      "module": "envelope_ahd",
       "inputs": {
-        "duration_ms": 5,
-        "level": 1,
-        "curve": "ease-out"
+        "attack_ms": 10,
+        "hold_ms": 500,
+        "decay_ms": 250,
+        "attack_curve": "linear",
+        "decay_curve": "linear"
       }
     },
     "n1": {
-      "module": "envelope_segment",
+      "module": "note_frequency",
       "inputs": {
-        "previous": {
-          "ref": "n0.shape"
-        },
-        "duration_ms": {
-          "ref": "inputs.body"
-        },
-        "level": 1,
-        "curve": "linear"
+        "note": "G3"
       }
     },
     "n2": {
-      "module": "envelope_segment",
+      "module": "pitch_sweep",
       "inputs": {
-        "previous": {
-          "ref": "n1.shape"
+        "frequency_hz": {
+          "ref": "n1.hz"
         },
-        "duration_ms": 20,
-        "level": {
-          "ref": "inputs.tail_level"
+        "semitones": {
+          "ref": "inputs.sweep"
         },
-        "curve": {
-          "ref": "inputs.curvature"
+        "duration_ms": {
+          "ref": "inputs.length"
         }
       }
     },
     "n3": {
-      "module": "envelope_segment",
+      "module": "oscillator",
       "inputs": {
-        "previous": {
-          "ref": "n2.shape"
-        },
-        "duration_ms": {
-          "ref": "inputs.tail_duration"
-        },
-        "level": 0,
-        "curve": {
-          "ref": "inputs.curvature"
+        "waveform": "sine",
+        "phase_cycles": 0,
+        "phase": {
+          "ref": "n2.phase"
         }
       }
     },
     "n4": {
-      "module": "envelope_segments",
-      "inputs": {
-        "segments": {
-          "ref": "n3.shape"
-        }
-      }
-    },
-    "n5": {
-      "module": "note_frequency",
-      "inputs": {
-        "note": {
-          "ref": "inputs.note"
-        }
-      }
-    },
-    "n6": {
-      "module": "oscillator",
-      "inputs": {
-        "waveform": "sine",
-        "frequency_hz": {
-          "ref": "n5.hz"
-        },
-        "phase_cycles": 0
-      }
-    },
-    "n7": {
       "module": "amplifier",
       "inputs": {
         "audio": {
-          "ref": "n6.audio"
+          "ref": "n3.audio"
         },
         "envelope": {
-          "ref": "n4.control"
+          "ref": "n0.control"
         },
         "gain": 0.15
       }
     },
-    "n8": {
+    "n5": {
       "module": "place",
       "inputs": {
         "audio": {
-          "ref": "n7.audio"
+          "ref": "n4.audio"
         },
         "start_ms": 0,
         "duration_ms": {
-          "ref": "n4.duration_ms"
+          "ref": "n0.duration_ms"
         }
       }
     }
   },
   "output": {
     "audio": {
-      "ref": "n8.audio"
+      "ref": "n5.audio"
     },
     "duration_ms": {
-      "ref": "n8.end_ms"
+      "ref": "n5.end_ms"
     }
   },
   "inputs": {
-    "note": {
-      "label": "Note",
-      "type": "note",
-      "default": "C5",
-      "range": [
-        "C4",
-        "C6"
-      ]
-    },
-    "body": {
-      "label": "Body",
-      "type": "duration",
-      "default": 20,
-      "unit": "ms",
-      "range": [
-        0,
-        100
-      ],
-      "step": 5
-    },
-    "tail_level": {
-      "label": "Tail level",
+    "sweep": {
+      "label": "Sweep",
       "type": "float",
-      "default": 0.2,
+      "default": 12,
       "range": [
-        0,
-        0.5
+        -12,
+        12
       ],
-      "step": 0.05
+      "step": 1
     },
-    "tail_duration": {
-      "label": "Tail duration",
+    "length": {
+      "label": "Length",
       "type": "duration",
-      "default": 120,
+      "default": 150,
       "unit": "ms",
       "range": [
         20,
         500
       ],
       "step": 10
-    },
-    "curvature": {
-      "label": "Curvature",
-      "type": "float",
-      "default": -4,
-      "range": [
-        -8,
-        8
-      ],
-      "step": 0.5
     }
   }
 }

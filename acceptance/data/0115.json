@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "name": "Noise layers",
+  "name": "fm-brightness",
   "render": {
     "sample_rate": 48000,
     "channels": 1
@@ -11,7 +11,9 @@
       "inputs": {
         "attack_ms": 2,
         "hold_ms": 0,
-        "decay_ms": 130,
+        "decay_ms": {
+          "ref": "inputs.tone_decay"
+        },
         "attack_curve": "linear",
         "decay_curve": "ease-out"
       }
@@ -25,190 +27,131 @@
       }
     },
     "n2": {
-      "module": "oscillator",
+      "module": "envelope_ahd",
       "inputs": {
-        "waveform": "sine",
-        "frequency_hz": {
-          "ref": "n1.hz"
+        "attack_ms": {
+          "ref": "inputs.brightness_attack"
         },
-        "phase_cycles": 0
+        "hold_ms": 0,
+        "decay_ms": {
+          "ref": "inputs.brightness_decay"
+        },
+        "attack_curve": "linear",
+        "decay_curve": "ease-out"
       }
     },
     "n3": {
-      "module": "amplifier",
+      "module": "fm_oscillator",
       "inputs": {
-        "audio": {
-          "ref": "n2.audio"
+        "frequency_hz": {
+          "ref": "n1.hz"
+        },
+        "ratio": {
+          "ref": "inputs.ratio"
+        },
+        "index": {
+          "ref": "inputs.index"
         },
         "envelope": {
-          "ref": "n0.control"
-        },
-        "gain": {
-          "ref": "inputs.tone_level"
+          "ref": "n2.control"
         }
       }
     },
     "n4": {
-      "module": "place",
+      "module": "amplifier",
       "inputs": {
         "audio": {
           "ref": "n3.audio"
+        },
+        "envelope": {
+          "ref": "n0.control"
+        },
+        "gain": 0.15
+      }
+    },
+    "n5": {
+      "module": "place",
+      "inputs": {
+        "audio": {
+          "ref": "n4.audio"
         },
         "start_ms": 0,
         "duration_ms": {
           "ref": "n0.duration_ms"
         }
       }
-    },
-    "n5": {
-      "module": "envelope_ahd",
-      "inputs": {
-        "attack_ms": 1,
-        "hold_ms": 0,
-        "decay_ms": {
-          "ref": "inputs.noise_decay"
-        },
-        "attack_curve": "linear",
-        "decay_curve": "ease-out"
-      }
-    },
-    "n6": {
-      "module": "noise",
-      "inputs": {
-        "seed": {
-          "ref": "inputs.seed"
-        }
-      }
-    },
-    "n7": {
-      "module": "lowpass",
-      "inputs": {
-        "audio": {
-          "ref": "n6.audio"
-        },
-        "envelope": {
-          "ref": "n5.control"
-        },
-        "cutoff_hz": {
-          "ref": "inputs.noise_cutoff"
-        },
-        "resonance": 0.707,
-        "amount": 0
-      }
-    },
-    "n8": {
-      "module": "amplifier",
-      "inputs": {
-        "audio": {
-          "ref": "n7.audio"
-        },
-        "envelope": {
-          "ref": "n5.control"
-        },
-        "gain": {
-          "ref": "inputs.noise_level"
-        }
-      }
-    },
-    "n9": {
-      "module": "place",
-      "inputs": {
-        "audio": {
-          "ref": "n8.audio"
-        },
-        "start_ms": 0,
-        "duration_ms": {
-          "ref": "n5.duration_ms"
-        }
-      }
-    },
-    "n10": {
-      "module": "mix",
-      "inputs": {
-        "audio_a": {
-          "ref": "n4.audio"
-        },
-        "audio_b": {
-          "ref": "n9.audio"
-        },
-        "duration_a_ms": {
-          "ref": "n4.end_ms"
-        },
-        "duration_b_ms": {
-          "ref": "n9.end_ms"
-        }
-      }
     }
   },
   "output": {
     "audio": {
-      "ref": "n10.audio"
+      "ref": "n5.audio"
     },
     "duration_ms": {
-      "ref": "n10.duration_ms"
+      "ref": "n5.end_ms"
     }
   },
   "inputs": {
     "note": {
       "label": "Note",
       "type": "note",
-      "default": "C5",
+      "default": "A3",
       "range": [
-        "C4",
-        "C6"
+        "C3",
+        "C5"
       ]
     },
-    "tone_level": {
-      "label": "Tone level",
+    "ratio": {
+      "label": "Ratio",
       "type": "float",
-      "default": 0.12,
+      "default": 3,
+      "range": [
+        0.5,
+        4
+      ],
+      "step": 0.5
+    },
+    "index": {
+      "label": "Index",
+      "type": "float",
+      "default": 2,
       "range": [
         0,
-        0.25
+        8
       ],
-      "step": 0.01
+      "step": 0.25
     },
-    "noise_level": {
-      "label": "Noise level",
-      "type": "float",
-      "default": 0.18,
-      "range": [
-        0,
-        0.3
-      ],
-      "step": 0.01
-    },
-    "noise_decay": {
-      "label": "Noise decay",
+    "brightness_attack": {
+      "label": "Brightness attack",
       "type": "duration",
-      "default": 35,
+      "default": 80,
       "unit": "ms",
       "range": [
-        5,
-        200
-      ],
-      "step": 5
-    },
-    "noise_cutoff": {
-      "label": "Noise cutoff",
-      "type": "float",
-      "default": 3000,
-      "unit": "Hz",
-      "range": [
-        200,
-        16000
-      ],
-      "step": 100
-    },
-    "seed": {
-      "label": "Seed",
-      "type": "float",
-      "default": 1,
-      "range": [
         0,
-        99
+        120
       ],
       "step": 1
+    },
+    "brightness_decay": {
+      "label": "Brightness decay",
+      "type": "duration",
+      "default": 120,
+      "unit": "ms",
+      "range": [
+        20,
+        500
+      ],
+      "step": 10
+    },
+    "tone_decay": {
+      "label": "Tone decay",
+      "type": "duration",
+      "default": 560,
+      "unit": "ms",
+      "range": [
+        200,
+        1000
+      ],
+      "step": 10
     }
   }
 }

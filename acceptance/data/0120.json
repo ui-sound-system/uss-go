@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "name": "Reverb trim",
+  "name": "low-pass-cutoff",
   "render": {
     "sample_rate": 48000,
     "channels": 1
@@ -9,9 +9,9 @@
     "n0": {
       "module": "envelope_ahd",
       "inputs": {
-        "attack_ms": 3,
-        "hold_ms": 0,
-        "decay_ms": 80,
+        "attack_ms": 10,
+        "hold_ms": 700,
+        "decay_ms": 150,
         "attack_curve": "linear",
         "decay_curve": "linear"
       }
@@ -19,13 +19,13 @@
     "n1": {
       "module": "note_frequency",
       "inputs": {
-        "note": "C5"
+        "note": "G3"
       }
     },
     "n2": {
       "module": "oscillator",
       "inputs": {
-        "waveform": "sine",
+        "waveform": "saw",
         "frequency_hz": {
           "ref": "n1.hz"
         },
@@ -33,7 +33,7 @@
       }
     },
     "n3": {
-      "module": "amplifier",
+      "module": "lowpass",
       "inputs": {
         "audio": {
           "ref": "n2.audio"
@@ -41,104 +41,57 @@
         "envelope": {
           "ref": "n0.control"
         },
-        "gain": 0.2
+        "cutoff_hz": {
+          "ref": "inputs.cutoff"
+        },
+        "resonance": 0.707,
+        "amount": 0
       }
     },
     "n4": {
-      "module": "place",
+      "module": "amplifier",
       "inputs": {
         "audio": {
           "ref": "n3.audio"
+        },
+        "envelope": {
+          "ref": "n0.control"
+        },
+        "gain": 0.15
+      }
+    },
+    "n5": {
+      "module": "place",
+      "inputs": {
+        "audio": {
+          "ref": "n4.audio"
         },
         "start_ms": 0,
         "duration_ms": {
           "ref": "n0.duration_ms"
         }
       }
-    },
-    "n5": {
-      "module": "audio_gain",
-      "inputs": {
-        "audio": {
-          "ref": "n4.audio"
-        },
-        "duration_ms": {
-          "ref": "n4.end_ms"
-        },
-        "gain": 0.8
-      }
-    },
-    "n6": {
-      "module": "reverb",
-      "inputs": {
-        "audio": {
-          "ref": "n5.audio"
-        },
-        "duration_ms": {
-          "ref": "n5.duration_ms"
-        },
-        "pre_delay_ms": 20,
-        "room_size": 0.7,
-        "decay_ms": 1500,
-        "damping": 0.4,
-        "wet": 0.8
-      }
-    },
-    "n7": {
-      "module": "mix",
-      "inputs": {
-        "audio_a": {
-          "ref": "n4.audio"
-        },
-        "audio_b": {
-          "ref": "n6.audio"
-        },
-        "duration_a_ms": {
-          "ref": "n4.end_ms"
-        },
-        "duration_b_ms": {
-          "ref": "n6.duration_ms"
-        }
-      }
-    },
-    "n8": {
-      "module": "trim",
-      "inputs": {
-        "audio": {
-          "ref": "n7.audio"
-        },
-        "duration_ms": {
-          "ref": "n7.duration_ms"
-        },
-        "keep_ms": {
-          "ref": "n4.end_ms"
-        },
-        "enabled": 1,
-        "threshold_db": {
-          "ref": "inputs.threshold"
-        }
-      }
     }
   },
   "output": {
     "audio": {
-      "ref": "n8.audio"
+      "ref": "n5.audio"
     },
     "duration_ms": {
-      "ref": "n8.duration_ms"
+      "ref": "n5.end_ms"
     }
   },
   "inputs": {
-    "threshold": {
-      "label": "Trim threshold",
+    "cutoff": {
+      "label": "Cutoff",
       "type": "float",
-      "default": 60,
-      "unit": "db",
+      "default": 800,
+      "unit": "Hz",
       "range": [
-        30,
-        100
+        200,
+        12000
       ],
-      "step": 10
+      "step": 100
     }
   }
 }

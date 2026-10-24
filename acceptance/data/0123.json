@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "name": "Reverb",
+  "name": "noise-layers",
   "render": {
     "sample_rate": 48000,
     "channels": 1
@@ -9,17 +9,19 @@
     "n0": {
       "module": "envelope_ahd",
       "inputs": {
-        "attack_ms": 3,
+        "attack_ms": 2,
         "hold_ms": 0,
-        "decay_ms": 80,
+        "decay_ms": 130,
         "attack_curve": "linear",
-        "decay_curve": "linear"
+        "decay_curve": "ease-out"
       }
     },
     "n1": {
       "module": "note_frequency",
       "inputs": {
-        "note": "C5"
+        "note": {
+          "ref": "inputs.note"
+        }
       }
     },
     "n2": {
@@ -41,7 +43,9 @@
         "envelope": {
           "ref": "n0.control"
         },
-        "gain": 0.2
+        "gain": {
+          "ref": "inputs.tone_level"
+        }
       }
     },
     "n4": {
@@ -57,149 +61,154 @@
       }
     },
     "n5": {
-      "module": "audio_gain",
+      "module": "envelope_ahd",
       "inputs": {
-        "audio": {
-          "ref": "n4.audio"
+        "attack_ms": 1,
+        "hold_ms": 0,
+        "decay_ms": {
+          "ref": "inputs.noise_decay"
         },
-        "duration_ms": {
-          "ref": "n4.end_ms"
-        },
-        "gain": {
-          "ref": "inputs.send"
-        }
+        "attack_curve": "linear",
+        "decay_curve": "ease-out"
       }
     },
     "n6": {
-      "module": "reverb",
+      "module": "noise",
       "inputs": {
-        "audio": {
-          "ref": "n5.audio"
-        },
-        "duration_ms": {
-          "ref": "n5.duration_ms"
-        },
-        "pre_delay_ms": {
-          "ref": "inputs.pre_delay"
-        },
-        "room_size": {
-          "ref": "inputs.room_size"
-        },
-        "decay_ms": {
-          "ref": "inputs.decay"
-        },
-        "damping": {
-          "ref": "inputs.damping"
-        },
-        "wet": {
-          "ref": "inputs.wet"
+        "seed": {
+          "ref": "inputs.seed"
         }
       }
     },
     "n7": {
+      "module": "lowpass",
+      "inputs": {
+        "audio": {
+          "ref": "n6.audio"
+        },
+        "envelope": {
+          "ref": "n5.control"
+        },
+        "cutoff_hz": {
+          "ref": "inputs.noise_cutoff"
+        },
+        "resonance": 0.707,
+        "amount": 0
+      }
+    },
+    "n8": {
+      "module": "amplifier",
+      "inputs": {
+        "audio": {
+          "ref": "n7.audio"
+        },
+        "envelope": {
+          "ref": "n5.control"
+        },
+        "gain": {
+          "ref": "inputs.noise_level"
+        }
+      }
+    },
+    "n9": {
+      "module": "place",
+      "inputs": {
+        "audio": {
+          "ref": "n8.audio"
+        },
+        "start_ms": 0,
+        "duration_ms": {
+          "ref": "n5.duration_ms"
+        }
+      }
+    },
+    "n10": {
       "module": "mix",
       "inputs": {
         "audio_a": {
           "ref": "n4.audio"
         },
         "audio_b": {
-          "ref": "n6.audio"
+          "ref": "n9.audio"
         },
         "duration_a_ms": {
           "ref": "n4.end_ms"
         },
         "duration_b_ms": {
-          "ref": "n6.duration_ms"
+          "ref": "n9.end_ms"
         }
-      }
-    },
-    "n8": {
-      "module": "trim",
-      "inputs": {
-        "audio": {
-          "ref": "n7.audio"
-        },
-        "duration_ms": {
-          "ref": "n7.duration_ms"
-        },
-        "keep_ms": {
-          "ref": "n4.end_ms"
-        },
-        "enabled": 1,
-        "threshold_db": 60
       }
     }
   },
   "output": {
     "audio": {
-      "ref": "n8.audio"
+      "ref": "n10.audio"
     },
     "duration_ms": {
-      "ref": "n8.duration_ms"
+      "ref": "n10.duration_ms"
     }
   },
   "inputs": {
-    "send": {
-      "label": "Send",
+    "note": {
+      "label": "Note",
+      "type": "note",
+      "default": "C5",
+      "range": [
+        "C4",
+        "C6"
+      ]
+    },
+    "tone_level": {
+      "label": "Tone level",
       "type": "float",
-      "default": 0.8,
+      "default": 0.12,
       "range": [
         0,
-        1
+        0.25
       ],
-      "step": 0.05
+      "step": 0.01
     },
-    "wet": {
-      "label": "Wet",
+    "noise_level": {
+      "label": "Noise level",
       "type": "float",
-      "default": 0.8,
+      "default": 0.18,
       "range": [
         0,
-        1
+        0.3
       ],
-      "step": 0.05
+      "step": 0.01
     },
-    "pre_delay": {
-      "label": "Pre delay",
+    "noise_decay": {
+      "label": "Noise decay",
       "type": "duration",
-      "default": 20,
+      "default": 35,
       "unit": "ms",
       "range": [
-        0,
-        150
+        5,
+        200
       ],
       "step": 5
     },
-    "room_size": {
-      "label": "Room size",
+    "noise_cutoff": {
+      "label": "Noise cutoff",
       "type": "float",
-      "default": 0.7,
+      "default": 3000,
+      "unit": "Hz",
       "range": [
-        0,
-        1
-      ],
-      "step": 0.05
-    },
-    "decay": {
-      "label": "Decay",
-      "type": "duration",
-      "default": 1500,
-      "unit": "ms",
-      "range": [
-        100,
-        3000
+        200,
+        16000
       ],
       "step": 100
     },
-    "damping": {
-      "label": "Damping",
+    "seed": {
+      "label": "Seed",
       "type": "float",
-      "default": 0.4,
+      "default": 1,
       "range": [
         0,
-        1
+        99
       ],
-      "step": 0.05
+      "step": 1
     }
   }
 }

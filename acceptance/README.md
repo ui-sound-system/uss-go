@@ -1,6 +1,6 @@
 # USS acceptance suite, version 1
 
-This directory is owned by `uss-generator` and copied into each consumer. Tests
+This directory is owned by `uss-editor` and copied into each consumer. Tests
 read their local copy without Node, another checkout, or network access.
 
 `manifest.json` contains:
@@ -24,7 +24,7 @@ Runners require matching lengths and identical headers, then compare sample
 values using the declared tolerances. Do not compare whole-file hashes across
 implementations: floating-point math may differ slightly across platforms.
 
-From `uss-generator`:
+From `uss-editor`:
 
 ```sh
 op acceptance-generate   # explicitly replace reference data from current JS
