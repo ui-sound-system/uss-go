@@ -112,30 +112,14 @@
           "ref": "n6.duration_ms"
         }
       }
-    },
-    "n8": {
-      "module": "trim",
-      "inputs": {
-        "audio": {
-          "ref": "n7.audio"
-        },
-        "duration_ms": {
-          "ref": "n7.duration_ms"
-        },
-        "keep_ms": {
-          "ref": "n4.end_ms"
-        },
-        "enabled": 1,
-        "threshold_db": 60
-      }
     }
   },
   "output": {
     "audio": {
-      "ref": "n8.audio"
+      "ref": "n7.audio"
     },
     "duration_ms": {
-      "ref": "n8.duration_ms"
+      "ref": "n7.duration_ms"
     }
   },
   "inputs": {

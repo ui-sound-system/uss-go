@@ -29,10 +29,47 @@
       }
     },
     "n2": {
+      "module": "text_select",
+      "inputs": {
+        "selector": {
+          "ref": "inputs.waveform"
+        },
+        "match": "saw",
+        "if_true": "saw",
+        "if_false": "square"
+      }
+    },
+    "n3": {
+      "module": "text_select",
+      "inputs": {
+        "selector": {
+          "ref": "inputs.waveform"
+        },
+        "match": "triangle",
+        "if_true": "triangle",
+        "if_false": {
+          "ref": "n2.value"
+        }
+      }
+    },
+    "n4": {
+      "module": "text_select",
+      "inputs": {
+        "selector": {
+          "ref": "inputs.waveform"
+        },
+        "match": "sine",
+        "if_true": "sine",
+        "if_false": {
+          "ref": "n3.value"
+        }
+      }
+    },
+    "n5": {
       "module": "oscillator",
       "inputs": {
         "waveform": {
-          "ref": "inputs.waveform"
+          "ref": "n4.value"
         },
         "frequency_hz": {
           "ref": "n1.hz"
@@ -40,11 +77,11 @@
         "phase_cycles": 0
       }
     },
-    "n3": {
+    "n6": {
       "module": "amplifier",
       "inputs": {
         "audio": {
-          "ref": "n2.audio"
+          "ref": "n5.audio"
         },
         "envelope": {
           "ref": "n0.control"
@@ -54,11 +91,11 @@
         }
       }
     },
-    "n4": {
+    "n7": {
       "module": "place",
       "inputs": {
         "audio": {
-          "ref": "n3.audio"
+          "ref": "n6.audio"
         },
         "start_ms": 0,
         "duration_ms": {
@@ -69,10 +106,10 @@
   },
   "output": {
     "audio": {
-      "ref": "n4.audio"
+      "ref": "n7.audio"
     },
     "duration_ms": {
-      "ref": "n4.end_ms"
+      "ref": "n7.end_ms"
     }
   },
   "inputs": {

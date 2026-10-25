@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"math"
-	"sort"
 	"strings"
 )
 
@@ -105,37 +104,16 @@ func Parse(data []byte) (*Definition, error) {
 
 // Render validates and renders the definition with optional named overrides.
 func (d *Definition) Render(overrides Inputs) (*Sound, error) {
-	inputs, err := d.bind(overrides)
+	stream, err := d.Stream(overrides)
 	if err != nil {
 		return nil, err
 	}
-	e := evaluator{definition: d, inputs: inputs, memo: make(map[string]ports), visiting: make(map[string]bool)}
-	ids := make([]string, 0, len(d.Graph))
-	for id := range d.Graph {
-		ids = append(ids, id)
+	defer stream.Close()
+	sound := &Sound{Name: d.Name, Samples: make([]float32, stream.total)}
+	if _, err := stream.ReadSamples(sound.Samples); err != nil && err != io.EOF {
+		return nil, err
 	}
-	sort.Strings(ids)
-	for _, id := range ids {
-		if _, err := e.evaluate(id); err != nil {
-			return nil, err
-		}
-	}
-	output := module{id: "output", inputs: d.Output, evaluator: &e}
-	output.only("audio", "duration_ms")
-	audio := output.signal("audio", "audio")
-	duration := output.number("duration_ms", "duration", .001, maxDuration)
-	if output.err != nil {
-		return nil, output.err
-	}
-	sound := &Sound{Name: d.Name, Samples: make([]float32, max(1, int(math.Round(duration*SampleRate/1000))))}
-	for i := range sound.Samples {
-		sample := float32(audio(float64(i) / SampleRate))
-		if math.IsNaN(float64(sample)) || math.IsInf(float64(sample), 0) {
-			return nil, fmt.Errorf("output: non-finite sample %d", i)
-		}
-		sound.Samples[i] = sample
-		sound.Peak = math.Max(sound.Peak, math.Abs(float64(sample)))
-	}
+	sound.Peak = stream.Peak()
 	return sound, nil
 }
 
@@ -144,6 +122,9 @@ type evaluator struct {
 	inputs     map[string]port
 	memo       map[string]ports
 	visiting   map[string]bool
+	processors map[string][]*processor
+	frame      int
+	budget     *int
 }
 
 func (e *evaluator) evaluate(id string) (ports, error) {
@@ -161,6 +142,10 @@ func (e *evaluator) evaluate(id string) (ports, error) {
 	if !ok {
 		return nil, fmt.Errorf("%s: unsupported module %q", id, n.Module)
 	}
+	*e.budget += 1
+	if *e.budget > maxProcessors {
+		return nil, fmt.Errorf("graph: instance expansion exceeds %d modules", maxProcessors)
+	}
 	e.visiting[id] = true
 	defer delete(e.visiting, id)
 	m := module{id: id, inputs: n.Inputs, evaluator: e}
@@ -168,6 +153,22 @@ func (e *evaluator) evaluate(id string) (ports, error) {
 	result := spec.build(&m)
 	if m.err != nil {
 		return nil, m.err
+	}
+	for name, value := range result {
+		if sample, ok := value.value.(signal); ok {
+			p := &processor{sample: sample, dependencies: m.dependencies}
+			p.run = func(start, count int) {
+				for i := 0; i < count; i++ {
+					e.frame = i
+					p.buffer[i] = p.sample(float64(start+i) / SampleRate)
+				}
+			}
+			if m.process != nil {
+				p.run = func(start, count int) { m.process(start, count, p.buffer[:count]) }
+			}
+			e.processors[id] = append(e.processors[id], p)
+			result[name] = port{value.kind, signal(func(float64) float64 { return p.buffer[e.frame] })}
+		}
 	}
 	e.memo[id] = result
 	return result, nil
@@ -213,10 +214,12 @@ func (e *evaluator) read(raw json.RawMessage, expected string) (any, error) {
 
 // Module accessors retain the first validation error; a failed module is never sampled.
 type module struct {
-	id        string
-	inputs    map[string]json.RawMessage
-	evaluator *evaluator
-	err       error
+	id           string
+	inputs       map[string]json.RawMessage
+	evaluator    *evaluator
+	err          error
+	dependencies []*processor
+	process      func(int, int, []float64)
 }
 
 func (m *module) fail(name, message string) {
@@ -265,6 +268,13 @@ func (m *module) text(name, kind string) string {
 }
 func (m *module) signal(name, kind string) signal {
 	value, ok := m.read(name, kind).(signal)
+	var reference struct {
+		Ref string `json:"ref"`
+	}
+	if json.Unmarshal(m.inputs[name], &reference) == nil {
+		id, _, _ := strings.Cut(reference.Ref, ".")
+		m.dependencies = append(m.dependencies, m.evaluator.processors[id]...)
+	}
 	if !ok {
 		m.fail(name, "expected "+kind)
 		return func(float64) float64 { return 0 }

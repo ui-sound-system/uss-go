@@ -1,0 +1,114 @@
+{
+  "format_version": 1,
+  "source": {
+    "repository": "ui-sound-system/uss-editor",
+    "revision": "e6e8741dc17199fc0a478c3802c5c352376554ca",
+    "sha256": "ec9141c325026db8d643ac481a7402c1a1b058193890ac88ae7898bb93fd6816"
+  },
+  "tolerance": {
+    "float32_absolute": 0.000001,
+    "pcm16_absolute": 1
+  },
+  "cases": [
+    {
+      "name": "one-note/0",
+      "definition": "data/0.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/0.f32le",
+        "wav": "data/0.wav"
+      }
+    },
+    {
+      "name": "two-note/5",
+      "definition": "data/1.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 16272,
+        "samples": "data/1.f32le",
+        "wav": "data/1.wav"
+      }
+    },
+    {
+      "name": "delayed-bleep/10",
+      "definition": "data/2.json",
+      "inputs": {
+        "waveform": "sine"
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 22272,
+        "samples": "data/2.f32le",
+        "wav": "data/2.wav"
+      }
+    },
+    {
+      "name": "fm-tone/74",
+      "definition": "data/3.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/3.f32le",
+        "wav": "data/3.wav"
+      }
+    },
+    {
+      "name": "waveform-tone/89",
+      "definition": "data/4.json",
+      "inputs": {
+        "waveform": "sine"
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8880,
+        "samples": "data/4.f32le",
+        "wav": "data/4.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/reverb.yaml/132",
+      "definition": "data/5.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 66132,
+        "samples": "data/5.f32le",
+        "wav": "data/5.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/segmented-envelope.yaml/137",
+      "definition": "data/6.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 7920,
+        "samples": "data/6.f32le",
+        "wav": "data/6.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/noise-layers.yaml/121",
+      "definition": "data/7.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 6336,
+        "samples": "data/7.f32le",
+        "wav": "data/7.wav"
+      }
+    }
+  ]
+}

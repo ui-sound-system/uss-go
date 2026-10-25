@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "name": "reverb-trim",
+  "name": "reverb",
   "render": {
     "sample_rate": 48000,
     "channels": 1
@@ -65,7 +65,9 @@
         "duration_ms": {
           "ref": "n4.end_ms"
         },
-        "gain": 0.8
+        "gain": {
+          "ref": "inputs.send"
+        }
       }
     },
     "n6": {
@@ -77,11 +79,21 @@
         "duration_ms": {
           "ref": "n5.duration_ms"
         },
-        "pre_delay_ms": 20,
-        "room_size": 0.7,
-        "decay_ms": 1500,
-        "damping": 0.4,
-        "wet": 0.8
+        "pre_delay_ms": {
+          "ref": "inputs.pre_delay"
+        },
+        "room_size": {
+          "ref": "inputs.room_size"
+        },
+        "decay_ms": {
+          "ref": "inputs.decay"
+        },
+        "damping": {
+          "ref": "inputs.damping"
+        },
+        "wet": {
+          "ref": "inputs.wet"
+        }
       }
     },
     "n7": {
@@ -100,45 +112,78 @@
           "ref": "n6.duration_ms"
         }
       }
-    },
-    "n8": {
-      "module": "trim",
-      "inputs": {
-        "audio": {
-          "ref": "n7.audio"
-        },
-        "duration_ms": {
-          "ref": "n7.duration_ms"
-        },
-        "keep_ms": {
-          "ref": "n4.end_ms"
-        },
-        "enabled": 1,
-        "threshold_db": {
-          "ref": "inputs.threshold"
-        }
-      }
     }
   },
   "output": {
     "audio": {
-      "ref": "n8.audio"
+      "ref": "n7.audio"
     },
     "duration_ms": {
-      "ref": "n8.duration_ms"
+      "ref": "n7.duration_ms"
     }
   },
   "inputs": {
-    "threshold": {
-      "label": "Trim threshold",
+    "send": {
+      "label": "Send",
       "type": "float",
-      "default": 60,
-      "unit": "db",
+      "default": 0.8,
       "range": [
-        30,
-        100
+        0,
+        1
       ],
-      "step": 10
+      "step": 0.05
+    },
+    "wet": {
+      "label": "Wet",
+      "type": "float",
+      "default": 0.8,
+      "range": [
+        0,
+        1
+      ],
+      "step": 0.05
+    },
+    "pre_delay": {
+      "label": "Pre delay",
+      "type": "duration",
+      "default": 20,
+      "unit": "ms",
+      "range": [
+        0,
+        150
+      ],
+      "step": 5
+    },
+    "room_size": {
+      "label": "Room size",
+      "type": "float",
+      "default": 0.7,
+      "range": [
+        0,
+        1
+      ],
+      "step": 0.05
+    },
+    "decay": {
+      "label": "Decay",
+      "type": "duration",
+      "default": 1500,
+      "unit": "ms",
+      "range": [
+        100,
+        3000
+      ],
+      "step": 100
+    },
+    "damping": {
+      "label": "Damping",
+      "type": "float",
+      "default": 0.4,
+      "range": [
+        0,
+        1
+      ],
+      "step": 0.05
     }
   }
 }

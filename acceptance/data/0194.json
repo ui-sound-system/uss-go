@@ -45,22 +45,31 @@
       }
     },
     "n4": {
-      "module": "duration_subtract",
+      "module": "number_divide",
       "inputs": {
         "a": {
-          "ref": "inputs.length"
+          "ref": "inputs.factor"
         },
-        "b": 40
+        "b": 2
       }
     },
     "n5": {
+      "module": "duration_multiply",
+      "inputs": {
+        "a": 100,
+        "b": {
+          "ref": "n4.value"
+        }
+      }
+    },
+    "n6": {
       "module": "place",
       "inputs": {
         "audio": {
           "ref": "n3.audio"
         },
         "start_ms": {
-          "ref": "n4.value"
+          "ref": "n5.value"
         },
         "duration_ms": {
           "ref": "n0.duration_ms"
@@ -70,10 +79,10 @@
   },
   "output": {
     "audio": {
-      "ref": "n5.audio"
+      "ref": "n6.audio"
     },
     "duration_ms": {
-      "ref": "n5.end_ms"
+      "ref": "n6.end_ms"
     }
   },
   "inputs": {

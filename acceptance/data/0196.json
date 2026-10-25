@@ -45,24 +45,31 @@
       }
     },
     "n4": {
-      "module": "duration_multiply",
+      "module": "duration_subtract",
       "inputs": {
         "a": {
           "ref": "inputs.length"
         },
-        "b": {
-          "ref": "inputs.factor"
-        }
+        "b": 250
       }
     },
     "n5": {
+      "module": "duration_multiply",
+      "inputs": {
+        "a": {
+          "ref": "n4.value"
+        },
+        "b": -1
+      }
+    },
+    "n6": {
       "module": "place",
       "inputs": {
         "audio": {
           "ref": "n3.audio"
         },
         "start_ms": {
-          "ref": "n4.value"
+          "ref": "n5.value"
         },
         "duration_ms": {
           "ref": "n0.duration_ms"
@@ -72,10 +79,10 @@
   },
   "output": {
     "audio": {
-      "ref": "n5.audio"
+      "ref": "n6.audio"
     },
     "duration_ms": {
-      "ref": "n5.end_ms"
+      "ref": "n6.end_ms"
     }
   },
   "inputs": {

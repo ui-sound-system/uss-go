@@ -2,8 +2,8 @@
   "format_version": 1,
   "source": {
     "repository": "ui-sound-system/uss-editor",
-    "revision": "5ae2d552b21996c973d30fc402881859ccefdbc2",
-    "sha256": "ec8c408fda42f0731c03c4e11905daa18d6a3099cf0a952158a8192a7d9fcbd0"
+    "revision": "4c9a9f53356b528a8cf870a2901f4f1dbfe4b68c",
+    "sha256": "39a5c26ab45fd9d2cbfb3116bd7bed44d28541ba916e81f6a6e5e5fe4adbbf71"
   },
   "tolerance": {
     "float32_absolute": 0.000001,
@@ -1830,60 +1830,20 @@
       }
     },
     {
-      "name": "compact/Learn/reverb-trim.yaml/129",
+      "name": "compact/Learn/reverb.yaml/129",
       "definition": "data/0129.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
-        "sample_count": 66612,
+        "sample_count": 158544,
         "samples": "data/0129.f32le",
         "wav": "data/0129.wav"
       }
     },
     {
-      "name": "compact/Learn/reverb-trim.yaml/130",
+      "name": "compact/Learn/reverb.yaml/130",
       "definition": "data/0130.json",
-      "inputs": {
-        "threshold": 30
-      },
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 25726,
-        "samples": "data/0130.f32le",
-        "wav": "data/0130.wav"
-      }
-    },
-    {
-      "name": "compact/Learn/reverb-trim.yaml/131",
-      "definition": "data/0131.json",
-      "inputs": {
-        "threshold": 100
-      },
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 116840,
-        "samples": "data/0131.f32le",
-        "wav": "data/0131.wav"
-      }
-    },
-    {
-      "name": "compact/Learn/reverb.yaml/132",
-      "definition": "data/0132.json",
-      "inputs": {},
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 66612,
-        "samples": "data/0132.f32le",
-        "wav": "data/0132.wav"
-      }
-    },
-    {
-      "name": "compact/Learn/reverb.yaml/133",
-      "definition": "data/0133.json",
       "inputs": {
         "send": 0
       },
@@ -1891,13 +1851,13 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 3984,
-        "samples": "data/0133.f32le",
-        "wav": "data/0133.wav"
+        "samples": "data/0130.f32le",
+        "wav": "data/0130.wav"
       }
     },
     {
-      "name": "compact/Learn/reverb.yaml/134",
-      "definition": "data/0134.json",
+      "name": "compact/Learn/reverb.yaml/131",
+      "definition": "data/0131.json",
       "inputs": {
         "wet": 0
       },
@@ -1905,13 +1865,13 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 3984,
-        "samples": "data/0134.f32le",
-        "wav": "data/0134.wav"
+        "samples": "data/0131.f32le",
+        "wav": "data/0131.wav"
       }
     },
     {
-      "name": "compact/Learn/reverb.yaml/135",
-      "definition": "data/0135.json",
+      "name": "compact/Learn/reverb.yaml/132",
+      "definition": "data/0132.json",
       "inputs": {
         "pre_delay": 0,
         "room_size": 0,
@@ -1922,14 +1882,14 @@
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
-        "sample_count": 10522,
-        "samples": "data/0135.f32le",
-        "wav": "data/0135.wav"
+        "sample_count": 23184,
+        "samples": "data/0132.f32le",
+        "wav": "data/0132.wav"
       }
     },
     {
-      "name": "compact/Learn/reverb.yaml/136",
-      "definition": "data/0136.json",
+      "name": "compact/Learn/reverb.yaml/133",
+      "definition": "data/0133.json",
       "inputs": {
         "room_size": 1,
         "damping": 1,
@@ -1938,26 +1898,26 @@
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
-        "sample_count": 26242,
-        "samples": "data/0136.f32le",
-        "wav": "data/0136.wav"
+        "sample_count": 62544,
+        "samples": "data/0133.f32le",
+        "wav": "data/0133.wav"
       }
     },
     {
-      "name": "compact/Learn/segmented-envelope.yaml/137",
-      "definition": "data/0137.json",
+      "name": "compact/Learn/segmented-envelope.yaml/134",
+      "definition": "data/0134.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 7920,
-        "samples": "data/0137.f32le",
-        "wav": "data/0137.wav"
+        "samples": "data/0134.f32le",
+        "wav": "data/0134.wav"
       }
     },
     {
-      "name": "compact/Learn/segmented-envelope.yaml/138",
-      "definition": "data/0138.json",
+      "name": "compact/Learn/segmented-envelope.yaml/135",
+      "definition": "data/0135.json",
       "inputs": {
         "body": 0,
         "curvature": -8,
@@ -1967,13 +1927,13 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 6960,
-        "samples": "data/0138.f32le",
-        "wav": "data/0138.wav"
+        "samples": "data/0135.f32le",
+        "wav": "data/0135.wav"
       }
     },
     {
-      "name": "compact/Learn/segmented-envelope.yaml/139",
-      "definition": "data/0139.json",
+      "name": "compact/Learn/segmented-envelope.yaml/136",
+      "definition": "data/0136.json",
       "inputs": {
         "curvature": 0,
         "tail_duration": 500
@@ -1982,13 +1942,13 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 26160,
-        "samples": "data/0139.f32le",
-        "wav": "data/0139.wav"
+        "samples": "data/0136.f32le",
+        "wav": "data/0136.wav"
       }
     },
     {
-      "name": "compact/Learn/segmented-envelope.yaml/140",
-      "definition": "data/0140.json",
+      "name": "compact/Learn/segmented-envelope.yaml/137",
+      "definition": "data/0137.json",
       "inputs": {
         "curvature": 8,
         "tail_level": 0.5
@@ -1997,25 +1957,25 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 7920,
-        "samples": "data/0140.f32le",
-        "wav": "data/0140.wav"
+        "samples": "data/0137.f32le",
+        "wav": "data/0137.wav"
       }
     },
     {
-      "name": "compact/Learn/sequence-events.yaml/141",
-      "definition": "data/0141.json",
+      "name": "compact/Learn/sequence-events.yaml/138",
+      "definition": "data/0138.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 10224,
-        "samples": "data/0141.f32le",
-        "wav": "data/0141.wav"
+        "samples": "data/0138.f32le",
+        "wav": "data/0138.wav"
       }
     },
     {
-      "name": "compact/Learn/sequence-events.yaml/142",
-      "definition": "data/0142.json",
+      "name": "compact/Learn/sequence-events.yaml/139",
+      "definition": "data/0139.json",
       "inputs": {
         "pattern": "pair",
         "spacing": "short",
@@ -2026,13 +1986,13 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 6624,
-        "samples": "data/0142.f32le",
-        "wav": "data/0142.wav"
+        "samples": "data/0139.f32le",
+        "wav": "data/0139.wav"
       }
     },
     {
-      "name": "compact/Learn/sequence-events.yaml/143",
-      "definition": "data/0143.json",
+      "name": "compact/Learn/sequence-events.yaml/140",
+      "definition": "data/0140.json",
       "inputs": {
         "pattern": "reverse",
         "spacing": "long"
@@ -2041,13 +2001,13 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 13824,
-        "samples": "data/0143.f32le",
-        "wav": "data/0143.wav"
+        "samples": "data/0140.f32le",
+        "wav": "data/0140.wav"
       }
     },
     {
-      "name": "compact/Learn/sequence-events.yaml/144",
-      "definition": "data/0144.json",
+      "name": "compact/Learn/sequence-events.yaml/141",
+      "definition": "data/0141.json",
       "inputs": {
         "pattern": "mixed",
         "spacing": "short"
@@ -2056,18 +2016,62 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 7824,
-        "samples": "data/0144.f32le",
-        "wav": "data/0144.wav"
+        "samples": "data/0141.f32le",
+        "wav": "data/0141.wav"
       }
     },
     {
-      "name": "compact/Learn/sequence-level-ramp.yaml/145",
-      "definition": "data/0145.json",
+      "name": "compact/Learn/sequence-level-ramp.yaml/142",
+      "definition": "data/0142.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 34560,
+        "samples": "data/0142.f32le",
+        "wav": "data/0142.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/sequence-velocity.yaml/143",
+      "definition": "data/0143.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 21024,
+        "samples": "data/0143.f32le",
+        "wav": "data/0143.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/sequence-velocity.yaml/144",
+      "definition": "data/0144.json",
+      "inputs": {
+        "first_velocity": 1,
+        "last_velocity": 1,
+        "accent_velocity": 1
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 21024,
+        "samples": "data/0144.f32le",
+        "wav": "data/0144.wav"
+      }
+    },
+    {
+      "name": "compact/Learn/sequence-velocity.yaml/145",
+      "definition": "data/0145.json",
+      "inputs": {
+        "first_velocity": 0,
+        "last_velocity": 1,
+        "accent_velocity": 0
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 21024,
         "samples": "data/0145.f32le",
         "wav": "data/0145.wav"
       }
@@ -2075,7 +2079,11 @@
     {
       "name": "compact/Learn/sequence-velocity.yaml/146",
       "definition": "data/0146.json",
-      "inputs": {},
+      "inputs": {
+        "first_velocity": 1,
+        "last_velocity": 0,
+        "accent_velocity": 0.5
+      },
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
@@ -2088,9 +2096,9 @@
       "name": "compact/Learn/sequence-velocity.yaml/147",
       "definition": "data/0147.json",
       "inputs": {
-        "first_velocity": 1,
-        "last_velocity": 1,
-        "accent_velocity": 1
+        "first_velocity": 0,
+        "last_velocity": 0,
+        "accent_velocity": 0
       },
       "expected": {
         "sample_rate": 48000,
@@ -2101,104 +2109,56 @@
       }
     },
     {
-      "name": "compact/Learn/sequence-velocity.yaml/148",
+      "name": "compact/Learn/sequence.yaml/148",
       "definition": "data/0148.json",
-      "inputs": {
-        "first_velocity": 0,
-        "last_velocity": 1,
-        "accent_velocity": 0
-      },
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 21024,
-        "samples": "data/0148.f32le",
-        "wav": "data/0148.wav"
-      }
-    },
-    {
-      "name": "compact/Learn/sequence-velocity.yaml/149",
-      "definition": "data/0149.json",
-      "inputs": {
-        "first_velocity": 1,
-        "last_velocity": 0,
-        "accent_velocity": 0.5
-      },
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 21024,
-        "samples": "data/0149.f32le",
-        "wav": "data/0149.wav"
-      }
-    },
-    {
-      "name": "compact/Learn/sequence-velocity.yaml/150",
-      "definition": "data/0150.json",
-      "inputs": {
-        "first_velocity": 0,
-        "last_velocity": 0,
-        "accent_velocity": 0
-      },
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 21024,
-        "samples": "data/0150.f32le",
-        "wav": "data/0150.wav"
-      }
-    },
-    {
-      "name": "compact/Learn/sequence.yaml/151",
-      "definition": "data/0151.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 27360,
-        "samples": "data/0151.f32le",
-        "wav": "data/0151.wav"
+        "samples": "data/0148.f32le",
+        "wav": "data/0148.wav"
       }
     },
     {
-      "name": "compact/Learn/two-voices.yaml/152",
-      "definition": "data/0152.json",
+      "name": "compact/Learn/two-voices.yaml/149",
+      "definition": "data/0149.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 14400,
-        "samples": "data/0152.f32le",
-        "wav": "data/0152.wav"
+        "samples": "data/0149.f32le",
+        "wav": "data/0149.wav"
       }
     },
     {
-      "name": "compact/Learn/unison.yaml/153",
-      "definition": "data/0153.json",
+      "name": "compact/Learn/unison.yaml/150",
+      "definition": "data/0150.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 41280,
-        "samples": "data/0153.f32le",
-        "wav": "data/0153.wav"
+        "samples": "data/0150.f32le",
+        "wav": "data/0150.wav"
       }
     },
     {
-      "name": "compact/fixtures/rising-scale.yaml/154",
-      "definition": "data/0154.json",
+      "name": "compact/fixtures/rising-scale.yaml/151",
+      "definition": "data/0151.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 46704,
-        "samples": "data/0154.f32le",
-        "wav": "data/0154.wav"
+        "samples": "data/0151.f32le",
+        "wav": "data/0151.wav"
       }
     },
     {
-      "name": "compact/fixtures/rising-scale.yaml/155",
-      "definition": "data/0155.json",
+      "name": "compact/fixtures/rising-scale.yaml/152",
+      "definition": "data/0152.json",
       "inputs": {
         "spacing": 50
       },
@@ -2206,25 +2166,25 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 25104,
-        "samples": "data/0155.f32le",
-        "wav": "data/0155.wav"
+        "samples": "data/0152.f32le",
+        "wav": "data/0152.wav"
       }
     },
     {
-      "name": "compact/fixtures/accelerating-scale.yaml/156",
-      "definition": "data/0156.json",
+      "name": "compact/fixtures/accelerating-scale.yaml/153",
+      "definition": "data/0153.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 46704,
-        "samples": "data/0156.f32le",
-        "wav": "data/0156.wav"
+        "samples": "data/0153.f32le",
+        "wav": "data/0153.wav"
       }
     },
     {
-      "name": "compact/fixtures/accelerating-scale.yaml/157",
-      "definition": "data/0157.json",
+      "name": "compact/fixtures/accelerating-scale.yaml/154",
+      "definition": "data/0154.json",
       "inputs": {
         "root": "D4",
         "slow": 100,
@@ -2234,25 +2194,25 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 29424,
-        "samples": "data/0157.f32le",
-        "wav": "data/0157.wav"
+        "samples": "data/0154.f32le",
+        "wav": "data/0154.wav"
       }
     },
     {
-      "name": "compact/fixtures/choice-events.yaml/158",
-      "definition": "data/0158.json",
+      "name": "compact/fixtures/choice-events.yaml/155",
+      "definition": "data/0155.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 1776,
-        "samples": "data/0158.f32le",
-        "wav": "data/0158.wav"
+        "samples": "data/0155.f32le",
+        "wav": "data/0155.wav"
       }
     },
     {
-      "name": "compact/fixtures/choice-events.yaml/159",
-      "definition": "data/0159.json",
+      "name": "compact/fixtures/choice-events.yaml/156",
+      "definition": "data/0156.json",
       "inputs": {
         "mode": "open",
         "tail": "short",
@@ -2267,13 +2227,13 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 1776,
-        "samples": "data/0159.f32le",
-        "wav": "data/0159.wav"
+        "samples": "data/0156.f32le",
+        "wav": "data/0156.wav"
       }
     },
     {
-      "name": "compact/fixtures/choice-events.yaml/160",
-      "definition": "data/0160.json",
+      "name": "compact/fixtures/choice-events.yaml/157",
+      "definition": "data/0157.json",
       "inputs": {
         "mode": "open",
         "tail": "long",
@@ -2288,13 +2248,13 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 2736,
-        "samples": "data/0160.f32le",
-        "wav": "data/0160.wav"
+        "samples": "data/0157.f32le",
+        "wav": "data/0157.wav"
       }
     },
     {
-      "name": "compact/fixtures/choice-events.yaml/161",
-      "definition": "data/0161.json",
+      "name": "compact/fixtures/choice-events.yaml/158",
+      "definition": "data/0158.json",
       "inputs": {
         "mode": "close",
         "tail": "short",
@@ -2309,13 +2269,13 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 4176,
-        "samples": "data/0161.f32le",
-        "wav": "data/0161.wav"
+        "samples": "data/0158.f32le",
+        "wav": "data/0158.wav"
       }
     },
     {
-      "name": "compact/fixtures/choice-events.yaml/162",
-      "definition": "data/0162.json",
+      "name": "compact/fixtures/choice-events.yaml/159",
+      "definition": "data/0159.json",
       "inputs": {
         "mode": "close",
         "tail": "long",
@@ -2330,13 +2290,13 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 5136,
-        "samples": "data/0162.f32le",
-        "wav": "data/0162.wav"
+        "samples": "data/0159.f32le",
+        "wav": "data/0159.wav"
       }
     },
     {
-      "name": "compact/fixtures/choice-events.yaml/163",
-      "definition": "data/0163.json",
+      "name": "compact/fixtures/choice-events.yaml/160",
+      "definition": "data/0160.json",
       "inputs": {
         "mode": "alert",
         "tail": "short",
@@ -2351,13 +2311,13 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 5616,
-        "samples": "data/0163.f32le",
-        "wav": "data/0163.wav"
+        "samples": "data/0160.f32le",
+        "wav": "data/0160.wav"
       }
     },
     {
-      "name": "compact/fixtures/choice-events.yaml/164",
-      "definition": "data/0164.json",
+      "name": "compact/fixtures/choice-events.yaml/161",
+      "definition": "data/0161.json",
       "inputs": {
         "mode": "alert",
         "tail": "long",
@@ -2372,25 +2332,25 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 6576,
-        "samples": "data/0164.f32le",
-        "wav": "data/0164.wav"
+        "samples": "data/0161.f32le",
+        "wav": "data/0161.wav"
       }
     },
     {
-      "name": "compact/fixtures/expression-relations.yaml/165",
-      "definition": "data/0165.json",
+      "name": "compact/fixtures/expression-relations.yaml/162",
+      "definition": "data/0162.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 5040,
-        "samples": "data/0165.f32le",
-        "wav": "data/0165.wav"
+        "samples": "data/0162.f32le",
+        "wav": "data/0162.wav"
       }
     },
     {
-      "name": "compact/fixtures/expression-relations.yaml/166",
-      "definition": "data/0166.json",
+      "name": "compact/fixtures/expression-relations.yaml/163",
+      "definition": "data/0163.json",
       "inputs": {
         "length": 200,
         "offset": 0.8
@@ -2399,13 +2359,13 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 9840,
-        "samples": "data/0166.f32le",
-        "wav": "data/0166.wav"
+        "samples": "data/0163.f32le",
+        "wav": "data/0163.wav"
       }
     },
     {
-      "name": "compact/fixtures/expression-relations.yaml/167",
-      "definition": "data/0167.json",
+      "name": "compact/fixtures/expression-relations.yaml/164",
+      "definition": "data/0164.json",
       "inputs": {
         "length": 50,
         "offset": 0.1
@@ -2414,149 +2374,25 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 2640,
-        "samples": "data/0167.f32le",
-        "wav": "data/0167.wav"
+        "samples": "data/0164.f32le",
+        "wav": "data/0164.wav"
       }
     },
     {
-      "name": "trim/true",
-      "definition": "data/0168.json",
-      "inputs": {},
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 11528,
-        "samples": "data/0168.f32le",
-        "wav": "data/0168.wav"
-      }
-    },
-    {
-      "name": "trim/false",
-      "definition": "data/0169.json",
+      "name": "reverb/shared-noise-sequence/165",
+      "definition": "data/0165.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 23568,
-        "samples": "data/0169.f32le",
-        "wav": "data/0169.wav"
+        "samples": "data/0165.f32le",
+        "wav": "data/0165.wav"
       }
     },
     {
-      "name": "trim/\"0db\"",
-      "definition": "data/0170.json",
-      "inputs": {},
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 3953,
-        "samples": "data/0170.f32le",
-        "wav": "data/0170.wav"
-      }
-    },
-    {
-      "name": "trim/\"50db\"",
-      "definition": "data/0171.json",
-      "inputs": {},
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 10658,
-        "samples": "data/0171.f32le",
-        "wav": "data/0171.wav"
-      }
-    },
-    {
-      "name": "trim/\"120db\"",
-      "definition": "data/0172.json",
-      "inputs": {},
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 17108,
-        "samples": "data/0172.f32le",
-        "wav": "data/0172.wav"
-      }
-    },
-    {
-      "name": "trim/{\"enabled\":true,\"threshold\":\"50db\"}",
-      "definition": "data/0173.json",
-      "inputs": {},
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 10658,
-        "samples": "data/0173.f32le",
-        "wav": "data/0173.wav"
-      }
-    },
-    {
-      "name": "trim/{\"enabled\":false}",
-      "definition": "data/0174.json",
-      "inputs": {},
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 23568,
-        "samples": "data/0174.f32le",
-        "wav": "data/0174.wav"
-      }
-    },
-    {
-      "name": "trim/override/50",
-      "definition": "data/0175.json",
-      "inputs": {
-        "cutoff": 50
-      },
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 10658,
-        "samples": "data/0175.f32le",
-        "wav": "data/0175.wav"
-      }
-    },
-    {
-      "name": "trim/override/100",
-      "definition": "data/0176.json",
-      "inputs": {
-        "cutoff": 100
-      },
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 15408,
-        "samples": "data/0176.f32le",
-        "wav": "data/0176.wav"
-      }
-    },
-    {
-      "name": "trim/silence",
-      "definition": "data/0177.json",
-      "inputs": {},
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 4944,
-        "samples": "data/0177.f32le",
-        "wav": "data/0177.wav"
-      }
-    },
-    {
-      "name": "reverb/shared-noise-sequence/178",
-      "definition": "data/0178.json",
-      "inputs": {},
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 11528,
-        "samples": "data/0178.f32le",
-        "wav": "data/0178.wav"
-      }
-    },
-    {
-      "name": "reverb/shared-noise-sequence/179",
-      "definition": "data/0179.json",
+      "name": "reverb/shared-noise-sequence/166",
+      "definition": "data/0166.json",
       "inputs": {
         "send": 0
       },
@@ -2564,39 +2400,39 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 3888,
-        "samples": "data/0179.f32le",
-        "wav": "data/0179.wav"
+        "samples": "data/0166.f32le",
+        "wav": "data/0166.wav"
       }
     },
     {
-      "name": "reverb/shared-noise-sequence/180",
-      "definition": "data/0180.json",
+      "name": "reverb/shared-noise-sequence/167",
+      "definition": "data/0167.json",
       "inputs": {
         "send": 1
       },
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
-        "sample_count": 12193,
-        "samples": "data/0180.f32le",
-        "wav": "data/0180.wav"
+        "sample_count": 23568,
+        "samples": "data/0167.f32le",
+        "wav": "data/0167.wav"
       }
     },
     {
-      "name": "segments/filter-fm-overlap/181",
-      "definition": "data/0181.json",
+      "name": "segments/filter-fm-overlap/168",
+      "definition": "data/0168.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 11040,
-        "samples": "data/0181.f32le",
-        "wav": "data/0181.wav"
+        "samples": "data/0168.f32le",
+        "wav": "data/0168.wav"
       }
     },
     {
-      "name": "segments/filter-fm-overlap/182",
-      "definition": "data/0182.json",
+      "name": "segments/filter-fm-overlap/169",
+      "definition": "data/0169.json",
       "inputs": {
         "curvature": "linear",
         "tail_duration": 500
@@ -2605,13 +2441,13 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 11040,
-        "samples": "data/0182.f32le",
-        "wav": "data/0182.wav"
+        "samples": "data/0169.f32le",
+        "wav": "data/0169.wav"
       }
     },
     {
-      "name": "segments/filter-fm-overlap/183",
-      "definition": "data/0183.json",
+      "name": "segments/filter-fm-overlap/170",
+      "definition": "data/0170.json",
       "inputs": {
         "curvature": "ease-in"
       },
@@ -2619,37 +2455,37 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 11040,
-        "samples": "data/0183.f32le",
-        "wav": "data/0183.wav"
+        "samples": "data/0170.f32le",
+        "wav": "data/0170.wav"
       }
     },
     {
       "name": "segments/zero-stages",
-      "definition": "data/0184.json",
+      "definition": "data/0171.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 1920,
-        "samples": "data/0184.f32le",
-        "wav": "data/0184.wav"
+        "samples": "data/0171.f32le",
+        "wav": "data/0171.wav"
       }
     },
     {
-      "name": "compact/level-ramp/185",
-      "definition": "data/0185.json",
+      "name": "compact/level-ramp/172",
+      "definition": "data/0172.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 13104,
-        "samples": "data/0185.f32le",
-        "wav": "data/0185.wav"
+        "samples": "data/0172.f32le",
+        "wav": "data/0172.wav"
       }
     },
     {
-      "name": "compact/level-ramp/186",
-      "definition": "data/0186.json",
+      "name": "compact/level-ramp/173",
+      "definition": "data/0173.json",
       "inputs": {
         "quiet": 0.08,
         "loud": 0.25
@@ -2658,73 +2494,73 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 13104,
-        "samples": "data/0186.f32le",
-        "wav": "data/0186.wav"
+        "samples": "data/0173.f32le",
+        "wav": "data/0173.wav"
       }
     },
     {
       "name": "noise/shared/0",
-      "definition": "data/0187.json",
+      "definition": "data/0174.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 2400,
-        "samples": "data/0187.f32le",
-        "wav": "data/0187.wav"
+        "samples": "data/0174.f32le",
+        "wav": "data/0174.wav"
       }
     },
     {
       "name": "noise/shared/1",
-      "definition": "data/0188.json",
+      "definition": "data/0175.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 2400,
-        "samples": "data/0188.f32le",
-        "wav": "data/0188.wav"
+        "samples": "data/0175.f32le",
+        "wav": "data/0175.wav"
       }
     },
     {
       "name": "noise/shared/2147483648",
-      "definition": "data/0189.json",
+      "definition": "data/0176.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 2400,
-        "samples": "data/0189.f32le",
-        "wav": "data/0189.wav"
+        "samples": "data/0176.f32le",
+        "wav": "data/0176.wav"
       }
     },
     {
       "name": "noise/shared/4294967295",
-      "definition": "data/0190.json",
+      "definition": "data/0177.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 2400,
-        "samples": "data/0190.f32le",
-        "wav": "data/0190.wav"
+        "samples": "data/0177.f32le",
+        "wav": "data/0177.wav"
       }
     },
     {
-      "name": "expressions/$length + 10ms/191",
-      "definition": "data/0191.json",
+      "name": "expressions/$length + 10ms/178",
+      "definition": "data/0178.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 6288,
-        "samples": "data/0191.f32le",
-        "wav": "data/0191.wav"
+        "samples": "data/0178.f32le",
+        "wav": "data/0178.wav"
       }
     },
     {
-      "name": "expressions/$length + 10ms/192",
-      "definition": "data/0192.json",
+      "name": "expressions/$length + 10ms/179",
+      "definition": "data/0179.json",
       "inputs": {
         "length": 200,
         "factor": 0.5
@@ -2733,25 +2569,25 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 11088,
-        "samples": "data/0192.f32le",
-        "wav": "data/0192.wav"
+        "samples": "data/0179.f32le",
+        "wav": "data/0179.wav"
       }
     },
     {
-      "name": "expressions/$length - 40ms/193",
-      "definition": "data/0193.json",
+      "name": "expressions/$length - 40ms/180",
+      "definition": "data/0180.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 3888,
-        "samples": "data/0193.f32le",
-        "wav": "data/0193.wav"
+        "samples": "data/0180.f32le",
+        "wav": "data/0180.wav"
       }
     },
     {
-      "name": "expressions/$length - 40ms/194",
-      "definition": "data/0194.json",
+      "name": "expressions/$length - 40ms/181",
+      "definition": "data/0181.json",
       "inputs": {
         "length": 200,
         "factor": 0.5
@@ -2760,25 +2596,25 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 8688,
-        "samples": "data/0194.f32le",
-        "wav": "data/0194.wav"
+        "samples": "data/0181.f32le",
+        "wav": "data/0181.wav"
       }
     },
     {
-      "name": "expressions/$factor * $length/195",
-      "definition": "data/0195.json",
+      "name": "expressions/$factor * $length/182",
+      "definition": "data/0182.json",
       "inputs": {},
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 2448,
-        "samples": "data/0195.f32le",
-        "wav": "data/0195.wav"
+        "samples": "data/0182.f32le",
+        "wav": "data/0182.wav"
       }
     },
     {
-      "name": "expressions/$factor * $length/196",
-      "definition": "data/0196.json",
+      "name": "expressions/$factor * $length/183",
+      "definition": "data/0183.json",
       "inputs": {
         "length": 200,
         "factor": 0.5
@@ -2787,14 +2623,191 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 5808,
+        "samples": "data/0183.f32le",
+        "wav": "data/0183.wav"
+      }
+    },
+    {
+      "name": "expressions/$length / 2/184",
+      "definition": "data/0184.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 3408,
+        "samples": "data/0184.f32le",
+        "wav": "data/0184.wav"
+      }
+    },
+    {
+      "name": "expressions/$length / 2/185",
+      "definition": "data/0185.json",
+      "inputs": {
+        "length": 200,
+        "factor": 0.5
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 5808,
+        "samples": "data/0185.f32le",
+        "wav": "data/0185.wav"
+      }
+    },
+    {
+      "name": "expressions/$length / 100ms * 30ms/186",
+      "definition": "data/0186.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 2448,
+        "samples": "data/0186.f32le",
+        "wav": "data/0186.wav"
+      }
+    },
+    {
+      "name": "expressions/$length / 100ms * 30ms/187",
+      "definition": "data/0187.json",
+      "inputs": {
+        "length": 200,
+        "factor": 0.5
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 3888,
+        "samples": "data/0187.f32le",
+        "wav": "data/0187.wav"
+      }
+    },
+    {
+      "name": "expressions/($factor + 0.2) * 60ms/188",
+      "definition": "data/0188.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 2448,
+        "samples": "data/0188.f32le",
+        "wav": "data/0188.wav"
+      }
+    },
+    {
+      "name": "expressions/($factor + 0.2) * 60ms/189",
+      "definition": "data/0189.json",
+      "inputs": {
+        "length": 200,
+        "factor": 0.5
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 3024,
+        "samples": "data/0189.f32le",
+        "wav": "data/0189.wav"
+      }
+    },
+    {
+      "name": "expressions/($factor - 0.1) * 100ms/190",
+      "definition": "data/0190.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 1968,
+        "samples": "data/0190.f32le",
+        "wav": "data/0190.wav"
+      }
+    },
+    {
+      "name": "expressions/($factor - 0.1) * 100ms/191",
+      "definition": "data/0191.json",
+      "inputs": {
+        "length": 200,
+        "factor": 0.5
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 2928,
+        "samples": "data/0191.f32le",
+        "wav": "data/0191.wav"
+      }
+    },
+    {
+      "name": "expressions/($factor * 0.5) * 100ms/192",
+      "definition": "data/0192.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 1728,
+        "samples": "data/0192.f32le",
+        "wav": "data/0192.wav"
+      }
+    },
+    {
+      "name": "expressions/($factor * 0.5) * 100ms/193",
+      "definition": "data/0193.json",
+      "inputs": {
+        "length": 200,
+        "factor": 0.5
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 2208,
+        "samples": "data/0193.f32le",
+        "wav": "data/0193.wav"
+      }
+    },
+    {
+      "name": "expressions/($factor / 2) * 100ms/194",
+      "definition": "data/0194.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 1728,
+        "samples": "data/0194.f32le",
+        "wav": "data/0194.wav"
+      }
+    },
+    {
+      "name": "expressions/($factor / 2) * 100ms/195",
+      "definition": "data/0195.json",
+      "inputs": {
+        "length": 200,
+        "factor": 0.5
+      },
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 2208,
+        "samples": "data/0195.f32le",
+        "wav": "data/0195.wav"
+      }
+    },
+    {
+      "name": "expressions/-($length - 250ms)/196",
+      "definition": "data/0196.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 8208,
         "samples": "data/0196.f32le",
         "wav": "data/0196.wav"
       }
     },
     {
-      "name": "expressions/$length / 2/197",
+      "name": "expressions/-($length - 250ms)/197",
       "definition": "data/0197.json",
-      "inputs": {},
+      "inputs": {
+        "length": 200,
+        "factor": 0.5
+      },
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
@@ -2804,199 +2817,22 @@
       }
     },
     {
-      "name": "expressions/$length / 2/198",
-      "definition": "data/0198.json",
-      "inputs": {
-        "length": 200,
-        "factor": 0.5
-      },
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 5808,
-        "samples": "data/0198.f32le",
-        "wav": "data/0198.wav"
-      }
-    },
-    {
-      "name": "expressions/$length / 100ms * 30ms/199",
-      "definition": "data/0199.json",
-      "inputs": {},
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 2448,
-        "samples": "data/0199.f32le",
-        "wav": "data/0199.wav"
-      }
-    },
-    {
-      "name": "expressions/$length / 100ms * 30ms/200",
-      "definition": "data/0200.json",
-      "inputs": {
-        "length": 200,
-        "factor": 0.5
-      },
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 3888,
-        "samples": "data/0200.f32le",
-        "wav": "data/0200.wav"
-      }
-    },
-    {
-      "name": "expressions/($factor + 0.2) * 60ms/201",
-      "definition": "data/0201.json",
-      "inputs": {},
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 2448,
-        "samples": "data/0201.f32le",
-        "wav": "data/0201.wav"
-      }
-    },
-    {
-      "name": "expressions/($factor + 0.2) * 60ms/202",
-      "definition": "data/0202.json",
-      "inputs": {
-        "length": 200,
-        "factor": 0.5
-      },
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 3024,
-        "samples": "data/0202.f32le",
-        "wav": "data/0202.wav"
-      }
-    },
-    {
-      "name": "expressions/($factor - 0.1) * 100ms/203",
-      "definition": "data/0203.json",
-      "inputs": {},
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 1968,
-        "samples": "data/0203.f32le",
-        "wav": "data/0203.wav"
-      }
-    },
-    {
-      "name": "expressions/($factor - 0.1) * 100ms/204",
-      "definition": "data/0204.json",
-      "inputs": {
-        "length": 200,
-        "factor": 0.5
-      },
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 2928,
-        "samples": "data/0204.f32le",
-        "wav": "data/0204.wav"
-      }
-    },
-    {
-      "name": "expressions/($factor * 0.5) * 100ms/205",
-      "definition": "data/0205.json",
-      "inputs": {},
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 1728,
-        "samples": "data/0205.f32le",
-        "wav": "data/0205.wav"
-      }
-    },
-    {
-      "name": "expressions/($factor * 0.5) * 100ms/206",
-      "definition": "data/0206.json",
-      "inputs": {
-        "length": 200,
-        "factor": 0.5
-      },
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 2208,
-        "samples": "data/0206.f32le",
-        "wav": "data/0206.wav"
-      }
-    },
-    {
-      "name": "expressions/($factor / 2) * 100ms/207",
-      "definition": "data/0207.json",
-      "inputs": {},
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 1728,
-        "samples": "data/0207.f32le",
-        "wav": "data/0207.wav"
-      }
-    },
-    {
-      "name": "expressions/($factor / 2) * 100ms/208",
-      "definition": "data/0208.json",
-      "inputs": {
-        "length": 200,
-        "factor": 0.5
-      },
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 2208,
-        "samples": "data/0208.f32le",
-        "wav": "data/0208.wav"
-      }
-    },
-    {
-      "name": "expressions/-($length - 250ms)/209",
-      "definition": "data/0209.json",
-      "inputs": {},
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 8208,
-        "samples": "data/0209.f32le",
-        "wav": "data/0209.wav"
-      }
-    },
-    {
-      "name": "expressions/-($length - 250ms)/210",
-      "definition": "data/0210.json",
-      "inputs": {
-        "length": 200,
-        "factor": 0.5
-      },
-      "expected": {
-        "sample_rate": 48000,
-        "channels": 1,
-        "sample_count": 3408,
-        "samples": "data/0210.f32le",
-        "wav": "data/0210.wav"
-      }
-    },
-    {
       "name": "choices/sends/open",
-      "definition": "data/0211.json",
+      "definition": "data/0198.json",
       "inputs": {
         "mode": "open"
       },
       "expected": {
         "sample_rate": 48000,
         "channels": 1,
-        "sample_count": 11503,
-        "samples": "data/0211.f32le",
-        "wav": "data/0211.wav"
+        "sample_count": 30096,
+        "samples": "data/0198.f32le",
+        "wav": "data/0198.wav"
       }
     },
     {
       "name": "choices/sends/close",
-      "definition": "data/0212.json",
+      "definition": "data/0199.json",
       "inputs": {
         "mode": "close"
       },
@@ -3004,8 +2840,32 @@
         "sample_rate": 48000,
         "channels": 1,
         "sample_count": 816,
-        "samples": "data/0212.f32le",
-        "wav": "data/0212.wav"
+        "samples": "data/0199.f32le",
+        "wav": "data/0199.wav"
+      }
+    },
+    {
+      "name": "instances/filter-reverb/25",
+      "definition": "data/0200.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 27168,
+        "samples": "data/0200.f32le",
+        "wav": "data/0200.wav"
+      }
+    },
+    {
+      "name": "instances/filter-reverb/25.01",
+      "definition": "data/0201.json",
+      "inputs": {},
+      "expected": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "sample_count": 27168,
+        "samples": "data/0201.f32le",
+        "wav": "data/0201.wav"
       }
     }
   ]

@@ -29,10 +29,47 @@
       }
     },
     "n2": {
+      "module": "text_select",
+      "inputs": {
+        "selector": {
+          "ref": "inputs.waveform"
+        },
+        "match": "saw",
+        "if_true": "saw",
+        "if_false": "square"
+      }
+    },
+    "n3": {
+      "module": "text_select",
+      "inputs": {
+        "selector": {
+          "ref": "inputs.waveform"
+        },
+        "match": "triangle",
+        "if_true": "triangle",
+        "if_false": {
+          "ref": "n2.value"
+        }
+      }
+    },
+    "n4": {
+      "module": "text_select",
+      "inputs": {
+        "selector": {
+          "ref": "inputs.waveform"
+        },
+        "match": "sine",
+        "if_true": "sine",
+        "if_false": {
+          "ref": "n3.value"
+        }
+      }
+    },
+    "n5": {
       "module": "oscillator",
       "inputs": {
         "waveform": {
-          "ref": "inputs.waveform"
+          "ref": "n4.value"
         },
         "frequency_hz": {
           "ref": "n1.hz"
@@ -40,7 +77,7 @@
         "phase_cycles": 0
       }
     },
-    "n3": {
+    "n6": {
       "module": "envelope_ahd",
       "inputs": {
         "attack_ms": {
@@ -52,14 +89,14 @@
         "decay_curve": "linear"
       }
     },
-    "n4": {
+    "n7": {
       "module": "lowpass",
       "inputs": {
         "audio": {
-          "ref": "n2.audio"
+          "ref": "n5.audio"
         },
         "envelope": {
-          "ref": "n3.control"
+          "ref": "n6.control"
         },
         "cutoff_hz": {
           "ref": "inputs.cutoff"
@@ -72,11 +109,11 @@
         }
       }
     },
-    "n5": {
+    "n8": {
       "module": "amplifier",
       "inputs": {
         "audio": {
-          "ref": "n4.audio"
+          "ref": "n7.audio"
         },
         "envelope": {
           "ref": "n0.control"
@@ -84,11 +121,11 @@
         "gain": 0.06
       }
     },
-    "n6": {
+    "n9": {
       "module": "place",
       "inputs": {
         "audio": {
-          "ref": "n5.audio"
+          "ref": "n8.audio"
         },
         "start_ms": 0,
         "duration_ms": {
@@ -96,7 +133,7 @@
         }
       }
     },
-    "n7": {
+    "n10": {
       "module": "envelope_ahd",
       "inputs": {
         "attack_ms": 4,
@@ -106,7 +143,7 @@
         "decay_curve": "linear"
       }
     },
-    "n8": {
+    "n11": {
       "module": "transpose",
       "inputs": {
         "note": {
@@ -115,22 +152,22 @@
         "semitones": 12
       }
     },
-    "n9": {
+    "n12": {
       "module": "note_frequency",
       "inputs": {
         "note": {
-          "ref": "n8.note"
+          "ref": "n11.note"
         }
       }
     },
-    "n10": {
+    "n13": {
       "module": "unison_oscillator",
       "inputs": {
         "waveform": {
-          "ref": "inputs.waveform"
+          "ref": "n4.value"
         },
         "frequency_hz": {
-          "ref": "n9.hz"
+          "ref": "n12.hz"
         },
         "phase_cycles": 0,
         "voices": {
@@ -141,7 +178,7 @@
         }
       }
     },
-    "n11": {
+    "n14": {
       "module": "envelope_ahd",
       "inputs": {
         "attack_ms": 40,
@@ -151,14 +188,14 @@
         "decay_curve": "linear"
       }
     },
-    "n12": {
+    "n15": {
       "module": "lowpass",
       "inputs": {
         "audio": {
-          "ref": "n10.audio"
+          "ref": "n13.audio"
         },
         "envelope": {
-          "ref": "n11.control"
+          "ref": "n14.control"
         },
         "cutoff_hz": {
           "ref": "inputs.cutoff"
@@ -171,58 +208,58 @@
         }
       }
     },
-    "n13": {
+    "n16": {
       "module": "amplifier",
       "inputs": {
         "audio": {
-          "ref": "n12.audio"
+          "ref": "n15.audio"
         },
         "envelope": {
-          "ref": "n7.control"
+          "ref": "n10.control"
         },
         "gain": {
           "ref": "inputs.level"
         }
       }
     },
-    "n14": {
+    "n17": {
       "module": "place",
       "inputs": {
         "audio": {
-          "ref": "n13.audio"
+          "ref": "n16.audio"
         },
         "start_ms": {
           "ref": "inputs.delay"
         },
         "duration_ms": {
-          "ref": "n7.duration_ms"
+          "ref": "n10.duration_ms"
         }
       }
     },
-    "n15": {
+    "n18": {
       "module": "mix",
       "inputs": {
         "audio_a": {
-          "ref": "n6.audio"
+          "ref": "n9.audio"
         },
         "audio_b": {
-          "ref": "n14.audio"
+          "ref": "n17.audio"
         },
         "duration_a_ms": {
-          "ref": "n6.end_ms"
+          "ref": "n9.end_ms"
         },
         "duration_b_ms": {
-          "ref": "n14.end_ms"
+          "ref": "n17.end_ms"
         }
       }
     }
   },
   "output": {
     "audio": {
-      "ref": "n15.audio"
+      "ref": "n18.audio"
     },
     "duration_ms": {
-      "ref": "n15.duration_ms"
+      "ref": "n18.duration_ms"
     }
   },
   "inputs": {

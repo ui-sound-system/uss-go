@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "name": "Latency test tone",
+  "render": {"sample_rate":48000,"channels":1},
+  "inputs": {
+    "note":{"label":"Note","type":"note","default":"A5","range":["C3","C7"]},
+    "level":{"label":"Level","type":"float","default":0.2,"range":[0,0.5],"step":0.01}
+  },
+  "graph": {
+    "pitch":{"module":"note_frequency","inputs":{"note":{"ref":"inputs.note"}}},
+    "tone":{"module":"oscillator","inputs":{"waveform":"sine","frequency_hz":{"ref":"pitch.hz"},"phase_cycles":0}},
+    "env":{"module":"envelope_ad","inputs":{"attack_ms":0.5,"decay_ms":79.5,"curve":"linear"}},
+    "amp":{"module":"amplifier","inputs":{"audio":{"ref":"tone.audio"},"envelope":{"ref":"env.control"},"gain":{"ref":"inputs.level"}}},
+    "filter":{"module":"lowpass","inputs":{"audio":{"ref":"amp.audio"},"envelope":{"ref":"env.control"},"cutoff_hz":2000,"resonance":0.7,"amount":2}},
+    "room":{"module":"reverb","inputs":{"audio":{"ref":"filter.audio"},"duration_ms":80,"pre_delay_ms":10,"room_size":0.5,"decay_ms":100,"damping":0.4,"wet":0.2}},
+    "mix":{"module":"mix","inputs":{"audio_a":{"ref":"filter.audio"},"audio_b":{"ref":"room.audio"},"duration_a_ms":80,"duration_b_ms":{"ref":"room.duration_ms"}}}
+  },
+  "output":{"audio":{"ref":"mix.audio"},"duration_ms":{"ref":"mix.duration_ms"}}
+}

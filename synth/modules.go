@@ -23,7 +23,6 @@ func init() {
 		"lowpass":           {[]string{"audio", "envelope", "cutoff_hz", "resonance", "amount"}, lowpass},
 		"audio_gain":        {[]string{"audio", "duration_ms", "gain"}, audioGain},
 		"reverb":            {[]string{"audio", "duration_ms", "pre_delay_ms", "room_size", "decay_ms", "damping", "wet"}, reverb},
-		"trim":              {[]string{"audio", "duration_ms", "keep_ms", "enabled", "threshold_db"}, trim},
 		"amplifier":         {[]string{"audio", "envelope", "gain"}, amplifier},
 		"place":             {[]string{"audio", "start_ms", "duration_ms"}, place},
 		"number_lerp":       {[]string{"from", "to", "position"}, numberLerp},

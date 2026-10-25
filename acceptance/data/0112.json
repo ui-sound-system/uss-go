@@ -7,6 +7,54 @@
   },
   "graph": {
     "n0": {
+      "module": "text_select",
+      "inputs": {
+        "selector": {
+          "ref": "inputs.attack_curve"
+        },
+        "match": "ease-in",
+        "if_true": "ease-in",
+        "if_false": "ease-out"
+      }
+    },
+    "n1": {
+      "module": "text_select",
+      "inputs": {
+        "selector": {
+          "ref": "inputs.attack_curve"
+        },
+        "match": "linear",
+        "if_true": "linear",
+        "if_false": {
+          "ref": "n0.value"
+        }
+      }
+    },
+    "n2": {
+      "module": "text_select",
+      "inputs": {
+        "selector": {
+          "ref": "inputs.decay_curve"
+        },
+        "match": "ease-in",
+        "if_true": "ease-in",
+        "if_false": "ease-out"
+      }
+    },
+    "n3": {
+      "module": "text_select",
+      "inputs": {
+        "selector": {
+          "ref": "inputs.decay_curve"
+        },
+        "match": "linear",
+        "if_true": "linear",
+        "if_false": {
+          "ref": "n2.value"
+        }
+      }
+    },
+    "n4": {
       "module": "envelope_ahd",
       "inputs": {
         "attack_ms": {
@@ -19,60 +67,60 @@
           "ref": "inputs.decay"
         },
         "attack_curve": {
-          "ref": "inputs.attack_curve"
+          "ref": "n1.value"
         },
         "decay_curve": {
-          "ref": "inputs.decay_curve"
+          "ref": "n3.value"
         }
       }
     },
-    "n1": {
+    "n5": {
       "module": "note_frequency",
       "inputs": {
         "note": "G4"
       }
     },
-    "n2": {
+    "n6": {
       "module": "oscillator",
       "inputs": {
         "waveform": "sine",
         "frequency_hz": {
-          "ref": "n1.hz"
+          "ref": "n5.hz"
         },
         "phase_cycles": 0
       }
     },
-    "n3": {
+    "n7": {
       "module": "amplifier",
       "inputs": {
         "audio": {
-          "ref": "n2.audio"
+          "ref": "n6.audio"
         },
         "envelope": {
-          "ref": "n0.control"
+          "ref": "n4.control"
         },
         "gain": 0.15
       }
     },
-    "n4": {
+    "n8": {
       "module": "place",
       "inputs": {
         "audio": {
-          "ref": "n3.audio"
+          "ref": "n7.audio"
         },
         "start_ms": 0,
         "duration_ms": {
-          "ref": "n0.duration_ms"
+          "ref": "n4.duration_ms"
         }
       }
     }
   },
   "output": {
     "audio": {
-      "ref": "n4.audio"
+      "ref": "n8.audio"
     },
     "duration_ms": {
-      "ref": "n4.end_ms"
+      "ref": "n8.end_ms"
     }
   },
   "inputs": {

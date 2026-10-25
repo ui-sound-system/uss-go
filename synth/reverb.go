@@ -60,40 +60,42 @@ func reverb(m *module) ports {
 	}
 	preSamples := int(math.Round(preDelay * SampleRate / 1000))
 	count := int(math.Round(duration * SampleRate / 1000))
-	samples := []float64{}
+	preBuffer := make([]float64, max(1, preSamples))
+	preIndex := 0
 	output := signal(func(t float64) float64 {
 		if t < 0 || t >= duration/1000 {
 			return 0
 		}
-		index := int(math.Round(t * SampleRate))
-		for len(samples) <= index {
-			n := len(samples)
-			inputTime := float64(n-preSamples) / SampleRate
-			input := 0.0
-			if inputTime >= 0 && inputTime < sourceDuration/1000 {
-				input = audio(inputTime)
-			}
-			value := 0.0
-			for i := range combs {
-				c := &combs[i]
-				delayed := c.buffer[c.index]
-				c.low = (1-damping)*delayed + damping*c.low
-				c.buffer[c.index] = input + c.feedback*c.low
-				c.index = (c.index + 1) % len(c.buffer)
-				value += delayed / 8
-			}
-			for i := range diffusers {
-				d := &diffusers[i]
-				delayed := d.buffer[d.index]
-				out := delayed - .5*value
-				d.buffer[d.index] = value + .5*out
-				d.index = (d.index + 1) % len(d.buffer)
-				value = out
-			}
-			fade := math.Max(0, math.Min(1, float64(count-1-n)/(SampleRate*.02)))
-			samples = append(samples, value*wet*fade)
+		n := int(math.Round(t * SampleRate))
+		input := 0.0
+		if t < sourceDuration/1000 {
+			input = audio(t)
 		}
-		return samples[index]
+		if preSamples > 0 {
+			delayed := preBuffer[preIndex]
+			preBuffer[preIndex] = input
+			preIndex = (preIndex + 1) % preSamples
+			input = delayed
+		}
+		value := 0.0
+		for i := range combs {
+			c := &combs[i]
+			delayed := c.buffer[c.index]
+			c.low = (1-damping)*delayed + damping*c.low
+			c.buffer[c.index] = input + c.feedback*c.low
+			c.index = (c.index + 1) % len(c.buffer)
+			value += delayed / 8
+		}
+		for i := range diffusers {
+			d := &diffusers[i]
+			delayed := d.buffer[d.index]
+			out := delayed - .5*value
+			d.buffer[d.index] = value + .5*out
+			d.index = (d.index + 1) % len(d.buffer)
+			value = out
+		}
+		fade := math.Max(0, math.Min(1, float64(count-1-n)/(SampleRate*.02)))
+		return value * wet * fade
 	})
 	return ports{"audio": {"audio", output}, "duration_ms": {"duration", duration}}
 }
