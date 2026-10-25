@@ -62,6 +62,19 @@ No background workers, audio device, or automatic waveform cache are involved.
 Use `prepared.Render(inputs)` or `definition.Render(inputs)` to collect and cache
 a complete sound. Existing Float32 samples and PCM16 WAV export remain available.
 
+For byte-oriented playback, wrap a fresh voice instead of calling `ReadSamples`:
+
+```go
+reader := voice.Float32LEReader()
+defer reader.Close()
+// Pass reader to an audio player accepting io.Reader.
+```
+
+The reader produces raw 48 kHz mono Float32 little-endian PCM without a WAV header,
+synthesizing on demand. It supports arbitrary byte-buffer sizes and implements
+`io.ReadCloser`. The reader and voice share one cursor; do not read them separately.
+Stop an asynchronous player's reads before closing the reader.
+
 Connections advance on one sample timeline. Shared nodes compute once per frame;
 `place` creates an independent instance of its upstream graph, with onset rounded
 to the nearest sample. DSP scratch storage is bounded independently of elapsed
@@ -82,6 +95,13 @@ The [player example](examples/player/) embeds a Two note sound and supports
 PlaySoundW and blocks until completion. WAV rendering also works on other systems.
 The [standalone example](examples/standalone/) retains the hand-written Two note
 function for comparison; it is not an automatic Go exporter.
+
+The [Oto example](examples/oto/) streams through `Float32LEReader()` to a
+cross-platform audio player, with Cgo-free desktop builds. It has its own Go module
+so the synthesis library keeps no external dependencies. The example embeds a sound
+and accepts an optional JSON filename and `-volume` (0 to 1).
+`op build-oto-windows` builds `dist/uss-oto.exe`, ready to run on Windows without Go
+or additional sound files. See the example for player setup and safe reader shutdown.
 
 ```sh
 op check
@@ -104,8 +124,10 @@ to select an event pattern, or `synth.Inputs{"direction": "down"}` for a mapped
 scalar control. Referenced note and timing controls remain adjustable. The
 renderer uses the exported graph and does not need YAML or event-list parsing.
 
-GitHub Actions checks formatting, vet, unit and acceptance tests, and the player
-build on Linux and Windows for pushes to main/master and pull requests.
+`op check` also vets and tests the separate Oto example with Cgo disabled.
+GitHub Actions checks formatting, vet, unit and acceptance tests, the player build,
+and the Cgo-free Oto example build on Linux and Windows for pushes to main/master
+and pull requests.
 
 For device testing, the [Windows latency tester](examples/latency/) keeps WASAPI
 open and compares streamed/cached playback, overlapping voices and optional Go

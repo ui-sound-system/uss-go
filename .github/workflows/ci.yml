@@ -37,3 +37,12 @@ jobs:
         run: go test ./...
       - name: Build player
         run: go build ./examples/player
+      - name: Check Cgo-free Oto example
+        working-directory: examples/oto
+        env:
+          CGO_ENABLED: "0"
+        run: |
+          go vet ./...
+          go test ./...
+          mkdir -p ../../dist
+          go build -o ../../dist/uss-oto-ci .
